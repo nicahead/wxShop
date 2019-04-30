@@ -8,7 +8,7 @@ spring:
   datasource:
     druid:
       url: jdbc:mysql://39.107.102.24:3306/shop?useUnicode=true&characterEncoding=utf-8
-      username: shop
+      username: root
       password: 123456
       initial-size: 1
       min-idle: 1
@@ -26,13 +26,17 @@ logging:
      com.ytu.shop.mapper : debug
 
 server:
-  port: 8080
+  port: 80
   servlet:
     session:
       timeout: 3600s
   tomcat:
     uri-encoding: UTF-8
     basedir: target/tomcat
+  erver:
+    ssl:
+      key-store: classpath: ssl/1655744_nichang.site.pfx
+      key-store-password: NLAH0poe
 
 
 
