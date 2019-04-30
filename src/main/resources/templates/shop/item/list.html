@@ -1,0 +1,172 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>学子小铺>商品管理</title>
+    <th:block th:include="includes/head :: head"></th:block>
+    <link rel="stylesheet" href="/css/app.css" />
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+    <th:block th:include="shop/common/header :: header"></th:block>
+    <th:block th:include="shop/common/menu :: menu"></th:block>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                商品管理
+                <small>商品列表</small>
+            </h1>
+        </section>
+        <!-- Main content -->
+        <section class="content container-fluid">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <th:block th:if="${baseResult!=null }">
+                                <div class="alert alert-success alert-dismissible" style="margin:15px 0 0 0">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                                        &times;
+                                    </button>
+                                    <span th:text="${baseResult.message }"></span>
+                                </div>
+                            </th:block>
+                            <div class="row" style="padding: 10px 0 0 15px">
+                                <a type="button" href="/shop/item/form" class="btn btn-sm btn-default"><i
+                                        class="fa fa-plus-square"></i>添加商品</a>
+                                <button type="button" onclick="App.opMulti('delete')"
+                                        class="btn btn-sm btn-default"><i class="fa fa-trash"></i>批量删除
+                                </button>
+                                <button onclick="search()" class="btn btn-sm btn-default"
+                                        style="float:right;margin-right: 10px;"><i
+                                        class="fa fa-search"></i>搜索
+                                </button>
+                                <div class="input-group input-group-sm"
+                                     style="width: 150px;float:right;margin-right: 10px;">
+                                    <input type="text" name="itemName" id="itemName" class="form-control pull-right"
+                                           placeholder="itemName">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body table-responsive no-padding">
+                            <table class="table table-hover display" id="dataTable">
+                                <thead>
+                                <tr>
+                                    <th><input type="checkbox" class="minimal icheck_master"/></th>
+                                    <th>商品名称</th>
+                                    <th>缩略图</th>
+                                    <th>价格</th>
+                                    <th>配送费</th>
+                                    <th>销售量</th>
+                                    <th>有无余货</th>
+                                    <th>创建时间</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+            </div>
+        </section>
+        <!-- /.content -->
+    </div>
+    <th:block th:include="includes/copyright :: copyright"></th:block>
+</div>
+<!--图片模态框 -->
+<div class="motai" id="mo">
+    <span class="close" id="close">×</span>
+    <img class="motaiimg" id="moimg">
+    <div id="caption"></div>
+</div>
+<th:block th:include="includes/foot :: foot"></th:block>
+<script>
+    var _dataTable;
+    $(function () {
+        var _columns = [
+            {
+                "data": function (row, type, val, meta) {
+                    if (row.id != 1)
+                        return '<input id=' + row.id + ' type="checkbox" class="minimal">';
+                    return "";
+                }
+            },
+            {"data": "itemName"},
+            {
+                "data": function (row, type, val, meta) {
+                    var imgpath = "/upload/" + row.pic;
+                    return '<img src="' + imgpath + '" class="real" onclick="show(\''+row.pic+'\')">';
+                }
+            },
+            {"data": "price"},
+            {"data": "packFee"},
+            {"data": "sale"},
+            {
+                "data": function (row, type, val, meta) {
+                    if (row.stock == 0)
+                        return '无';
+                    else
+                        return '有';
+                }
+            },
+            {
+                "data": function (row, type, val, meta) {
+                    if (row.created != null)
+                        return moment(row.created).format("YYYY-MM-DD HH:mm:ss");
+                    return "";
+                }
+            },
+            {
+                "data": function (row, type, val, meta) {
+                    var del_style = "";
+                    var edit_style = "";
+                    var deleteUrl = "delete";
+                    if (row.id == 1) {
+                        del_style = "disabled=true";
+                        // if (${sessionScope.user.id!=1}) {
+                        //     edit_style = "disabled";
+                        // }
+                    }
+                    return '<a href="/shop/item/form?id=' + row.id + '" type="button" class="btn btn-sm btn-primary ' + edit_style + '"><i class="fa fa-edit"></i>编辑</a>&nbsp;&nbsp;' +
+                        '<button onclick="App.opSingle(\'' + deleteUrl + '\', \'' + row.id + '\')" class="btn btn-sm btn-danger" ' + del_style + ' ><i class="fa fa-trash-o"></i>删除</button>';
+                }
+            }
+        ];
+        _dataTable = App.initDataTables("/shop/item/page", _columns);
+        var param = {
+            "shopId": $("#currentId").val()
+        }
+        _dataTable.settings()[0].ajax.data = param;
+        _dataTable.ajax.reload();
+    });
+
+    function search() {
+        var param = {
+            "shopId": $("#currentId").val(),
+            "itemName": $("#itemName").val()
+        }
+        _dataTable.settings()[0].ajax.data = param;
+        _dataTable.ajax.reload();
+    }
+
+    var motai = document.getElementById('mo')
+    var moimg = document.getElementById("moimg")
+
+    function show(src) {
+        motai.style.display = "block"
+        moimg.src = "/upload/" + src;
+    }
+
+    var span = document.getElementById("close");
+    span.onclick = function () {
+        motai.style.display = "none";
+    }
+</script>
+</body>
+</html>

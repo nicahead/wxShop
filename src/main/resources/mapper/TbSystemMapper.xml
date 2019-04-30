@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ytu.shop.mapper.TbSystemMapper">
+
+    <update id="update" parameterType="com.ytu.shop.domain.TbSystem">
+        update tb_system
+        <set>
+            <if test="appID!=null and appID!=''">
+                appID = #{appID},
+            </if>
+            <if test="appSecret!=null and appSecret!=''">
+                appSecret = #{appSecret},
+            </if>
+            <if test="appName!=null and appName!=''">
+                appName = #{appName},
+            </if>
+            <if test="notice!=null and notice!=''">
+                notice = #{notice},
+            </if>
+            <if test="about!=null and about!=''">
+                about = #{about},
+            </if>
+            <if test="contact!=null and contact!=''">
+                contact = #{contact},
+            </if>
+            <if test="pic1!=null and pic1!=''">
+                pic1 = #{pic1},
+            </if>
+            <if test="pic2!=null and pic2!=''">
+                pic2 = #{pic2},
+            </if>
+            <if test="pic3!=null and pic3!=''">
+                pic3 = #{pic3},
+            </if>
+
+        </set>
+        where
+        id = 1
+    </update>
+
+    <select id="select" resultType="com.ytu.shop.domain.TbSystem">
+        select * from tb_system
+        where
+        id = 1
+    </select>
+
+</mapper>

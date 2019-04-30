@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ytu.shop.mapper.TbItemMapper">
+
+    <insert id="insert" parameterType="com.ytu.shop.domain.TbItem">
+      insert into tb_item(id,item_name,price,pack_fee,pic,detail,shop_id,type_id,stock) value
+        (#{id},#{itemName},#{price},#{packFee},#{pic},#{detail},#{shopId},#{typeId},#{stock})
+    </insert>
+
+    <update id="updateSale" parameterType="com.ytu.shop.domain.TbOrderdetail">
+        update tb_item
+        set sale = sale + #{amount}
+        where
+        id = #{itemId}
+    </update>
+
+    <update id="delete" parameterType="String">
+        update tb_item
+        set state = 0
+        where
+        id = #{id}
+    </update>
+
+    <update id="deleteMulti">
+        update tb_item
+        set state = 0
+        where id in
+        <foreach collection="array" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </update>
+
+    <update id="update" parameterType="com.ytu.shop.domain.TbItem">
+        update tb_item
+        <set>
+            <if test="itemName!=null and itemName!=''">
+                item_name = #{itemName},
+            </if>
+            <if test="price!=null and price!=''">
+                price = #{price},
+            </if>
+            <if test="packFee!=null and packFee!=''">
+                pack_fee = #{packFee},
+            </if>
+            <if test="pic!=null and pic!=''">
+                pic = #{pic},
+            </if>
+            <if test="detail!=null and detail!=''">
+                detail = #{detail},
+            </if>
+            <if test="shopId!=null and shopId!=''">
+                shop_id = #{shopId},
+            </if>
+            <if test="typeId!=null and typeId!=''">
+                type_id = #{typeId},
+            </if>
+            <if test="stock!=null and stock!=''">
+                stock = #{stock},
+            </if>
+            <if test="updated!=null">
+                updated = #{updated}
+            </if>
+        </set>
+        where
+        id = #{id}
+    </update>
+
+    <select id="getById" parameterType="String" resultType="com.ytu.shop.domain.TbItem">
+        select * from tb_item
+        where
+        id = #{id} and state != 0
+    </select>
+
+    <select id="selectAll" resultType="com.ytu.shop.domain.TbItem">
+        select * from tb_item where state != 0
+    </select>
+
+    <sql id="conditions">
+        <if test="entity != null">
+            <if test="entity.itemName != null and entity.itemName != ''">
+                and item_name like concat('%',#{entity.itemName},'%')
+            </if>
+            <if test="entity.typeId != null and entity.typeId != ''">
+                and type_id = #{entity.typeId}
+            </if>
+            <if test="entity.shopId != null and entity.shopId != ''">
+                and shop_id = #{entity.shopId}
+            </if>
+        </if>
+    </sql>
+
+    <select id="page" resultType="com.ytu.shop.domain.TbItem">
+        select * from tb_item
+        where state != 0
+        <include refid="conditions"></include>
+        limit #{start},#{length}
+    </select>
+
+    <select id="count" parameterType="com.ytu.shop.domain.TbItem" resultType="int">
+        select count(*) from tb_item
+        where state != 0
+        <include refid="conditions"></include>
+    </select>
+
+    <select id="getList" resultType="com.ytu.shop.common.dto.ItemListDto">
+        SELECT i.id AS id,item_name,price,pic,sale,stock,s.id AS shopId,shop_name
+        FROM tb_item i LEFT JOIN tb_shop s ON i.shop_id = s.id
+        where i.state != 0
+        <include refid="conditions"></include>
+        ORDER BY sale DESC
+    </select>
+
+    <select id="getNew" resultType="com.ytu.shop.common.dto.ItemListDto">
+        SELECT i.id AS id,item_name,price,pic,sale,stock,s.id AS shopId,shop_name
+        FROM tb_item i LEFT JOIN tb_shop s ON i.shop_id = s.id
+        where i.state != 0
+        ORDER BY i.created DESC
+        limit 0,10
+    </select>
+
+    <select id="getDetail" parameterType="String" resultType="com.ytu.shop.common.dto.ItemDetailDto">
+        SELECT i.id AS id,item_name,price,pic,sale,stock,s.id AS shopId,shop_name,pack_fee,detail
+        FROM tb_item i LEFT JOIN tb_shop s ON i.shop_id = s.id
+        WHERE i.state != 0 AND i.id = #{id}
+    </select>
+
+</mapper>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ytu.shop.mapper.TbAddressMapper">
+
+    <insert id="insert" parameterType="com.ytu.shop.domain.TbAddress">
+      insert into tb_address(id,receiver,tel,province,city,area,detail,user_id) value
+        (#{id},#{receiver},#{tel},#{province},#{city},#{area},#{detail},#{userId})
+    </insert>
+
+    <select id="getByUserId" parameterType="String" resultType="com.ytu.shop.domain.TbAddress">
+    select * from tb_address
+    where
+    user_id = #{userId} and state = 1
+    </select>
+
+    <select id="getById" parameterType="String" resultType="com.ytu.shop.domain.TbAddress">
+    select * from tb_address
+    where
+    id = #{id} and state = 1
+    </select>
+
+    <update id="update" parameterType="com.ytu.shop.domain.TbAddress">
+        update tb_address
+        <set>
+            <if test="receiver!=null and receiver!=''">
+                receiver = #{receiver},
+            </if>
+            <if test="tel!=null and tel!=''">
+                tel = #{tel},
+            </if>
+            <if test="province!=null and province!=''">
+                province = #{province},
+            </if>
+            <if test="city!=null and city!=''">
+                city = #{city},
+            </if>
+            <if test="area!=null and area!=''">
+                area = #{area},
+            </if>
+            <if test="detail!=null and detail!=''">
+                detail = #{detail},
+            </if>
+        </set>
+        where
+        id = #{id}
+    </update>
+
+    <update id="delete" parameterType="String">
+        update tb_address
+        set state = 0
+        where
+        id = #{id}
+    </update>
+
+    <!--<update id="deleteMulti">-->
+    <!--update tb_admin-->
+    <!--set state = 0-->
+    <!--where id in-->
+    <!--<foreach collection="array" item="id" open="(" close=")" separator=",">-->
+    <!--#{id}-->
+    <!--</foreach>-->
+    <!--</update>-->
+
+    <!--<select id="selectAll" resultType="com.ytu.shop.domain.TbAdmin">-->
+    <!--select * from tb_admin where state = 1-->
+    <!--</select>-->
+
+    <!--<sql id="conditions">-->
+    <!--<if test="entity != null">-->
+    <!--<if test="entity.username != null and entity.username != ''">-->
+    <!--and username like concat('%',#{entity.username},'%')-->
+    <!--</if>-->
+    <!--<if test="entity.role != null and entity.role != 0">-->
+    <!--and role = #{entity.role}-->
+    <!--</if>-->
+    <!--</if>-->
+    <!--</sql>-->
+
+    <!--<select id="page" resultType="com.ytu.shop.domain.TbAdmin">-->
+    <!--select * from tb_admin-->
+    <!--where state = 1-->
+    <!--<include refid="conditions"></include>-->
+    <!--limit #{start},#{length}-->
+    <!--</select>-->
+
+    <!--<select id="count" parameterType="com.ytu.shop.domain.TbAdmin" resultType="int">-->
+    <!--select count(*) from tb_admin-->
+    <!--where state = 1-->
+    <!--<include refid="conditions"></include>-->
+    <!--</select>-->
+
+</mapper>

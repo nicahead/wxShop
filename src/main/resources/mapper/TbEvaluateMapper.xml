@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ytu.shop.mapper.TbEvaluateMapper">
+
+
+    <insert id="insert" parameterType="com.ytu.shop.domain.TbEvaluate">
+      insert into tb_evaluate(id,user_id,grade,content,order_id) value
+        (#{id},#{userId},#{grade},#{content},#{orderId})
+    </insert>
+
+    <select id="getByItemId" parameterType="String" resultType="com.ytu.shop.common.dto.EvaluateListDto">
+        SELECT e.id id,u.nickname nickname,u.avatar avatar,e.grade grade,e.content content,e.created created
+        FROM tb_evaluate e LEFT JOIN tb_user u on e.user_id = u.id
+        LEFT JOIN tb_orderdetail o on e.order_id = o.order_id
+        WHERE item_id = #{itemId}
+        ORDER BY e.created DESC
+    </select>
+
+    <select id="getPage" resultType="com.ytu.shop.common.dto.EvaluateListDto">
+        SELECT e.id id,u.nickname nickname,e.grade grade,e.content content,e.created created,o.order_id orderId,o.order_num orderNum
+        FROM tb_evaluate e LEFT JOIN tb_user u on e.user_id = u.id
+        LEFT JOIN tb_orderdetail o on e.order_id = o.order_id
+        WHERE shop_id = #{shopId}
+        ORDER BY e.created DESC
+        limit #{start},#{length}
+    </select>
+
+    <select id="getCount" parameterType="String" resultType="int">
+        SELECT count(*)
+        FROM tb_evaluate e LEFT JOIN tb_user u on e.user_id = u.id
+        LEFT JOIN tb_orderdetail o on e.order_id = o.order_id
+        WHERE shop_id = #{shopId}
+    </select>
+
+</mapper>

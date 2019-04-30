@@ -1,0 +1,158 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>学子小铺>编辑商品</title>
+    <th:block th:include="includes/head :: head"></th:block>
+    <link rel="stylesheet" href="/plugins/dropzone/dropzone.css" />
+    <link rel="stylesheet" href="/plugins/dropzone/min/basic.min.css" />
+    <link rel="stylesheet" href="/plugins/wangEditor/wangEditor.min.css" />
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+    <th:block th:include="shop/common/header :: header"></th:block>
+    <th:block th:include="shop/common/menu :: menu"></th:block>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                商品管理
+                <small th:text="${editItem != null and editItem.id != null ? '编辑商品' : '新增商品'}"></small>
+            </h1>
+        </section>
+        <!-- Main content -->
+        <section class="content container-fluid">
+            <div class="col-md-12">
+                <!-- Horizontal Form -->
+                <div class="box box-info">
+                    <!-- /.box-header -->
+                    <th:block th:if="${baseResult!=null }">
+                        <div class="alert alert-danger alert-dismissible" style="margin:15px 0 0 0">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                                &times;
+                            </button>
+                            <span th:text="${baseResult.message }"></span>
+                        </div>
+                    </th:block>
+                    <!-- form start -->
+                    <form action="/shop/item/save" method="post" class="form-horizontal" th:object="${editItem}">
+                        <input name="id" th:value="*{id}" type="hidden">
+                        <input name="shopId" th:value="${session.shop.id}" type="hidden" />
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label for="itemName" class="col-sm-2 control-label">商品名称（*）</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="itemName" class="form-control"
+                                           id="itemName" th:value="*{itemName}"
+                                           placeholder="itemName">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputprice" class="col-sm-2 control-label">商品价格（*）</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="price" class="form-control"
+                                           id="inputprice" th:value="*{price}"
+                                           placeholder="price">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputpackfee" class="col-sm-2 control-label">配送费（*）</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="packFee" class="form-control"
+                                           id="inputpackfee" th:value="*{packFee}"
+                                           placeholder="packFee">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputtype" class="col-sm-2 control-label">分类</label>
+                                <div class="col-sm-10">
+                                    <select name="typeId" class="form-control" id="inputtype">
+                                        <option th:each="type:${typels}" th:value="${type.id}" th:text="${type.typeName}"></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputstock" class="col-sm-2 control-label">是否有货</label>
+                                <div class="col-sm-10">
+                                    <select name="stock" class="form-control" id="inputstock">
+                                        <option value="1">是</option>
+                                        <option value="0">否</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputPic" class="col-sm-2 control-label">封面图片（*）</label>
+                                <div class="col-sm-10">
+                                    <input name="pic" class="form-control" id="inputPic" placeholder="pic" readonly="readonly" th:value="*{pic}">
+                                    <div id="dropz" class="dropzone"></div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="editor" class="col-sm-2 control-label">详情</label>
+                                <div class="col-sm-10">
+                                    <input type="hidden" name="detail" id="detail"/>
+                                    <div id="editor">
+                                        <span th:utext="*{detail}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                        <div class="box-footer">
+                            <button type="button" class="btn btn-default" onclick="history.go(-1)">取消</button>
+                            <button type="submit" id="btnSubmit" class="btn btn-info pull-right">提交</button>
+                        </div>
+                        <!-- /.box-footer -->
+                    </form>
+                </div>
+            </div>
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    <th:block th:include="includes/copyright :: copyright"></th:block>
+</div>
+<!-- ./wrapper -->
+<th:block th:include="includes/foot :: foot"></th:block>
+<script src="/plugins/dropzone/min/dropzone.min.js"></script>
+<script src="/plugins/wangEditor/wangEditor.min.js"></script>
+<script>
+    // function setSelect(id) {
+    //     var ls = $("#inputRole").find("option"); //获取select下拉框的所有值
+    //     for (var j = 1; j < ls.length; j++) {
+    //         if ($(ls[j]).val() == id) {
+    //             $(ls[j]).attr("selected", "selected");
+    //         }
+    //     }
+    // };
+    $(function () {
+        initWangEditor();
+    });
+    /**
+     * 初始化富文本编辑器
+     */
+    function initWangEditor () {
+        var E = window.wangEditor;
+        var editor = new E('#editor');
+        // 配置服务器端地址
+        editor.customConfig.uploadImgServer = '/upload';
+        editor.customConfig.uploadFileName = 'editorFiles';
+        editor.create();
+        $("#btnSubmit").bind("click", function() {
+            var contentHtml = editor.txt.html();
+            $("#detail").val(contentHtml);
+        });
+    }
+    App.initDropzone({
+        id: "#dropz",
+        url: "/upload",
+        pic: $("#inputPic").val(),
+        init: function () {
+            this.on("success", function (file, data) {
+                $("#inputPic").val(data.fileName);
+            });
+        }
+    });
+</script>
+</body>
+</html>

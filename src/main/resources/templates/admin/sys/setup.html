@@ -1,0 +1,104 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>学子小铺>小程序设置</title>
+    <th:block th:include="includes/head :: head"></th:block>
+</head>
+<body class="hold-transition skin-blue sidebar-mini" >
+<div class="wrapper">
+    <th:block th:include="admin/common/header :: header"></th:block>
+    <th:block th:include="admin/common/menu :: menu"></th:block>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                系统设置
+            </h1>
+        </section>
+        <!-- Main content -->
+        <section class="content container-fluid">
+            <div class="col-md-12">
+                <!-- Horizontal Form -->
+                <div class="box box-info">
+                    <!-- /.box-header -->
+                    <th:block th:if="${baseResult!=null }">
+                        <div class="alert alert-success alert-dismissible" style="margin:15px 0 0 0">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                                &times;
+                            </button>
+                            <span th:text="${baseResult.message }"></span>
+                        </div>
+                    </th:block>
+                    <!-- form start -->
+                    <form action="/admin/sys/update" method="post" class="form-horizontal" th:object="${editSys}">
+                        <input name="type" value="setup" type="hidden">
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label for="appID" class="col-sm-2 control-label">AppID 小程序ID（*）</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="appID" class="form-control"
+                                           id="appID" th:value="*{appID}"
+                                           placeholder="AppID">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="appSecret" class="col-sm-2 control-label">AppSecret 小程序密钥（*）</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="appSecret" class="form-control"
+                                           id="appSecret" th:value="*{appSecret}"
+                                           placeholder="AppSecret">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="appName" class="col-sm-2 control-label">小程序名（*）</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="appName" class="form-control"
+                                           id="appName" th:value="*{appName}"
+                                           placeholder="tel">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="notice" class="col-sm-2 control-label">通知</label>
+                                <div class="col-sm-10">
+                                    <textarea type="text" name="notice" class="form-control"
+                                              id="notice" th:text="*{notice}"
+                                              placeholder="notice"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="about" class="col-sm-2 control-label">关于我们</label>
+                                <div class="col-sm-10">
+                                    <textarea type="text" name="about" class="form-control"
+                                              id="about" th:text="*{about}"
+                                              placeholder="about"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="contact" class="col-sm-2 control-label">联系我们</label>
+                                <div class="col-sm-10">
+                                    <textarea type="text" name="contact" class="form-control"
+                                           id="contact" th:text="*{contact}"
+                                              placeholder="contact"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                        <div class="box-footer">
+                            <button type="button" class="btn btn-default" onclick="history.go(-1)">取消</button>
+                            <button type="submit" id="btnSubmit" class="btn btn-info pull-right">提交</button>
+                        </div>
+                        <!-- /.box-footer -->
+                    </form>
+                </div>
+            </div>
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    <th:block th:include="includes/copyright :: copyright"></th:block>
+</div>
+<!-- ./wrapper -->
+<th:block th:include="includes/foot :: foot"></th:block>
+</body>
+</html>

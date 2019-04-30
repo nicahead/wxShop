@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ytu.shop.mapper.TbOrderDetailMapper">
+
+    <insert id="insert" parameterType="com.ytu.shop.domain.TbOrderdetail">
+      insert into tb_orderdetail(id,item_id,item_name,price,amount,money,pic,shop_id,shop_name,order_id,order_num) value
+        (#{id},#{itemId},#{itemName},#{price},#{amount},#{money},#{pic},#{shopId},#{shopName},#{orderId},#{orderNum})
+    </insert>
+
+    <select id="getByOrderId" parameterType="String" resultType="com.ytu.shop.domain.TbOrderdetail">
+        select * from tb_orderdetail
+        where
+        order_id = #{orderId} and state != 0
+    </select>
+
+</mapper>

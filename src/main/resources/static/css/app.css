@@ -1,0 +1,58 @@
+.real {
+    /*点击弹出模态框的图片*/
+    width: 50px;
+    height: 30px;
+    border-radius: 6px;
+}
+.real:hover {
+    opacity: 0.6;
+}
+#mo {
+    display: none;
+    /*隐藏*/
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.7);
+    top: 100px;
+    left: -20px;
+    z-index: 1;
+}
+#moimg {
+    display: block;
+    margin: 25px auto;
+    width: 60%;
+    max-width: 750px;
+}
+#moimg{
+    -webkit-animation: first 1s;
+    -o-animation: first 1s;
+    animation: first 1s;
+}
+@keyframes first {
+    from {
+        transform: scale(0.1);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+.close {
+    font-size: 40px;
+    font-weight: bold;
+    position: absolute;
+    top: 20px;
+    right: 14%;
+    color: #f1f1f1;
+}
+.close:hover,
+.close:focus {
+    color: #bbb;
+    cursor: pointer;
+}
+@media only screen and(max-width:750px) {
+    #moimg {
+        width: 100%;
+    }
+}

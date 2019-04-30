@@ -1,0 +1,154 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>学子小铺>管理员管理</title>
+    <th:block th:include="includes/head :: head"></th:block>
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+    <th:block th:include="admin/common/header :: header"></th:block>
+    <th:block th:include="admin/common/menu :: menu"></th:block>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                管理员管理
+                <small>管理员列表</small>
+            </h1>
+        </section>
+        <!-- Main content -->
+        <section class="content container-fluid">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <th:block th:if="${baseResult!=null }">
+                                <div class="alert alert-success alert-dismissible" style="margin:15px 0 0 0">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                                        &times;
+                                    </button>
+                                    <span th:text="${baseResult.message }"></span>
+                                </div>
+                            </th:block>
+                            <div class="row" style="padding: 10px 0 0 15px">
+                                <a type="button" href="/admin/user/form" class="btn btn-sm btn-default"><i
+                                        class="fa fa-plus-square"></i>添加管理员</a>
+                                <button type="button" onclick="App.opMulti('delete')"
+                                        class="btn btn-sm btn-default"><i class="fa fa-trash"></i>批量删除
+                                </button>
+                                <button onclick="search()" class="btn btn-sm btn-default"
+                                        style="float:right;margin-right: 10px;"><i
+                                        class="fa fa-search"></i>搜索
+                                </button>
+                                <div class="input-group input-group-sm"
+                                     style="width: 150px;float:right; margin-right: 10px;">
+                                    <select name="role" id="role" class="form-control">
+                                        <option value="0">全部</option>
+                                        <option value="1">超级管理员</option>
+                                        <option value="2">普通管理员</option>
+                                    </select>
+                                </div>
+                                <div class="input-group input-group-sm"
+                                     style="width: 150px;float:right;margin-right: 10px;">
+                                    <input type="text" name="username" id="username" class="form-control pull-right"
+                                           placeholder="Username">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body table-responsive no-padding">
+                            <table class="table table-hover display" id="dataTable">
+                                <thead>
+                                <tr>
+                                    <th><input type="checkbox" class="minimal icheck_master"/></th>
+                                    <th>账号</th>
+                                    <th>用户名</th>
+                                    <th>用户邮箱</th>
+                                    <th>角色</th>
+                                    <th>注册时间</th>
+                                    <th>最近登录时间</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+            </div>
+        </section>
+        <!-- /.content -->
+    </div>
+    <th:block th:include="includes/copyright :: copyright"></th:block>
+</div>
+<th:block th:include="includes/foot :: foot"></th:block>
+<script>
+    var _dataTable;
+    $(function () {
+        var _columns = [
+            {
+                "data": function (row, type, val, meta) {
+                    if (row.id != 1)
+                        return '<input id=' + row.id + ' type="checkbox" class="minimal">';
+                    return "";
+                }
+            },
+            {"data": "loginCode"},
+            {"data": "username"},
+            {"data": "email"},
+            {
+                "data": function (row, type, val, meta) {
+                    if (row.role == 1)
+                        return '超级管理员';
+                    else if (row.role == 2)
+                        return '普通管理员';
+                }
+            },
+            {
+                "data": function (row, type, val, meta) {
+                    if (row.created != null)
+                        return moment(row.created).format("YYYY-MM-DD HH:mm:ss");
+                    return "";
+                }
+            },
+            {
+                "data": function (row, type, val, meta) {
+                    if (row.logined != null)
+                        return moment(row.logined).format("YYYY-MM-DD HH:mm:ss");
+                    return "";
+                }
+            },
+            {
+                "data": function (row, type, val, meta) {
+                    var del_style = "";
+                    var edit_style = "";
+                    var deleteUrl = "delete";
+                    if (row.id == 1) {
+                        del_style = "disabled=true";
+                        // if (${sessionScope.user.id!=1}) {
+                        //     edit_style = "disabled";
+                        // }
+                    }
+                    return '<a href="/admin/user/form?id=' + row.id + '" type="button" class="btn btn-sm btn-primary ' + edit_style + '"><i class="fa fa-edit"></i>编辑</a>&nbsp;&nbsp;' +
+                        '<button onclick="App.opSingle(\'' + deleteUrl + '\', \'' + row.id + '\')" class="btn btn-sm btn-danger" ' + del_style + ' ><i class="fa fa-trash-o"></i>删除</button>';
+                }
+            }
+        ];
+        _dataTable = App.initDataTables("/admin/user/page", _columns);
+    });
+
+    function search() {
+        var param = {
+            "username": $("#username").val(),
+            "role": $("#role").val()
+        }
+        _dataTable.settings()[0].ajax.data = param;
+        _dataTable.ajax.reload();
+    }
+</script>
+</body>
+</html>

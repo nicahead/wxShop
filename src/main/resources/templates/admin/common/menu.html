@@ -1,0 +1,67 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body th:fragment="menu">
+<aside class="main-sidebar">
+    <section class="sidebar">
+        <ul class="sidebar-menu" data-widget="tree">
+            <li class="header">功能菜单</li>
+            <th:block th:if="${session.admin.role==1}">
+                <li class="active treeview">
+                    <a href="#">
+                        <i class="fa fa-users"></i> <span>管理员管理</span>
+                        <span class="pull-right-container">
+                          <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="/admin/user/list"><i class="fa fa-circle-o"></i> 管理员列表</a></li>
+                        <li><a href="/admin/user/form"><i class="fa fa-circle-o"></i> 新增管理员</a></li>
+                    </ul>
+                </li>
+            </th:block>
+            <li class="active treeview">
+                <a href="#">
+                    <i class="fa fa-book"></i> <span>商户管理</span>
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="/admin/shop/list"><i class="fa fa-circle-o"></i> 商户列表</a></li>
+                    <li><a href="/admin/shop/form"><i class="fa fa-circle-o"></i> 新增商户</a></li>
+                </ul>
+            </li>
+            <li class="active treeview">
+                <a href="#">
+                    <i class="fa fa-book"></i> <span>类别管理</span>
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="/admin/type/list"><i class="fa fa-circle-o"></i> 类别列表</a></li>
+                    <li><a href="/admin/type/form"><i class="fa fa-circle-o"></i> 新增类别</a></li>
+                </ul>
+            </li>
+            <li class="active treeview">
+                <a href="#">
+                    <i class="fa fa-book"></i> <span>小程序设置</span>
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="/admin/sys/setup"><i class="fa fa-circle-o"></i> 系统设置</a></li>
+                    <li><a href="/admin/sys/banner"><i class="fa fa-circle-o"></i> 首页广告</a></li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+</aside>
+</body>
+</html>

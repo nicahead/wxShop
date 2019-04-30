@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ytu.shop.mapper.TbOrderMapper">
+
+    <insert id="insert" parameterType="com.ytu.shop.domain.TbOrder">
+      insert into tb_order(id,order_num,shop_id,shop_name,user_id,address_id) value
+        (#{id},#{orderNum},#{shopId},#{shopName},#{userId},#{addressId})
+    </insert>
+
+    <update id="update" parameterType="com.ytu.shop.domain.TbOrder">
+        update tb_order
+        set state = #{state}
+        where
+        id = #{id}
+    </update>
+
+    <select id="getById" parameterType="String" resultType="com.ytu.shop.domain.TbOrder">
+        select * from tb_order
+        where
+        id = #{id} and state != 0
+    </select>
+
+    <select id="getByUserId" parameterType="com.ytu.shop.domain.TbOrder" resultType="com.ytu.shop.domain.TbOrder">
+        select * from tb_order
+        where
+        user_id = #{userId} and state = #{state}
+    </select>
+
+    <select id="selectAll" resultType="com.ytu.shop.domain.TbOrder">
+        select * from tb_order where state != 0
+    </select>
+
+    <sql id="conditions">
+        <if test="entity != null">
+            <if test="entity.state != null and entity.state != 0">
+                and state = #{entity.state}
+            </if>
+        </if>
+    </sql>
+
+    <select id="page" resultType="com.ytu.shop.domain.TbOrder">
+        select * from tb_order
+        where state != 0
+        <include refid="conditions"></include>
+        limit #{start},#{length}
+    </select>
+
+    <select id="count" parameterType="com.ytu.shop.domain.TbOrder" resultType="int">
+        select count(*) from tb_order
+        where state != 0
+        <include refid="conditions"></include>
+    </select>
+
+    <update id="deliverMulti">
+        update tb_order
+        set state = 3
+        where id in
+        <foreach collection="array" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </update>
+
+    <update id="delete" parameterType="String">
+        update tb_order
+        set state = 0
+        where
+        id = #{id}
+    </update>
+
+    <update id="deleteMulti">
+        update tb_order
+        set state = 0
+        where id in
+        <foreach collection="array" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </update>
+</mapper>

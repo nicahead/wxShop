@@ -1,0 +1,44 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body th:fragment="menu">
+<aside class="main-sidebar">
+    <section class="sidebar">
+        <ul class="sidebar-menu" data-widget="tree">
+            <li class="header">功能菜单</li>
+            <li class="active treeview">
+                <a href="#">
+                    <i class="fa fa-users"></i> <span>商品管理</span>
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="/shop/item/list"><i class="fa fa-circle-o"></i> 商品列表</a></li>
+                    <li><a href="/shop/item/form"><i class="fa fa-circle-o"></i> 新增商品</a></li>
+                </ul>
+            </li>
+            <li class="active treeview">
+                <a href="#">
+                    <i class="fa fa-users"></i> <span>订单管理</span>
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="/shop/order/undone"><i class="fa fa-circle-o"></i> 待处理订单</a></li>
+                    <li><a href="/shop/order/doing"><i class="fa fa-circle-o"></i> 待收货订单</a></li>
+                    <li><a href="/shop/order/done"><i class="fa fa-circle-o"></i> 已完成订单</a></li>
+                </ul>
+            </li>
+            <li><a href="/shop/evaluate/list"><i class="fa fa-book"></i> <span>买家评价</span></a></li>
+            <li><a href="/shop/my/form"><i class="fa fa-book"></i> <span>店铺信息</span></a></li>
+        </ul>
+    </section>
+</aside>
+</body>
+</html>

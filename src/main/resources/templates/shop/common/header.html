@@ -1,0 +1,46 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body th:fragment="header">
+<header class="main-header">
+    <input type="hidden" th:value="${session.shop.id}" id="currentId">
+    <a href="" class="logo">
+        <span class="logo-mini"><b>后台</b></span>
+        <span class="logo-lg"><b>学子小铺</b></span>
+    </a>
+
+    <nav class="navbar navbar-static-top">
+        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+            <span class="sr-only">Toggle navigation</span>
+        </a>
+
+        <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+                <li class="dropdown user user-menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        欢迎！
+                        <span class="hidden-xs" th:text="${session.shop.shopName}"></span>
+                    </a>
+
+                    <ul class="dropdown-menu">
+
+                        <li class="user-footer">
+                            <div class="pull-left">
+                                <a href="/shop/my/form" class="btn btn-default btn-flat">修改信息</a>
+                            </div>
+                            <div class="pull-right">
+                                <a href="/logout" class="btn btn-default btn-flat">登出</a>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>学子小铺>订单管理</title>
+    <th:block th:include="includes/head :: head"></th:block>
+    <link rel="stylesheet" href="/css/app.css" />
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+    <th:block th:include="shop/common/header :: header"></th:block>
+    <th:block th:include="shop/common/menu :: menu"></th:block>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                订单管理
+                <small>待处理订单</small>
+            </h1>
+        </section>
+        <!-- Main content -->
+        <section class="content container-fluid">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <th:block th:if="${baseResult!=null }">
+                                <div class="alert alert-success alert-dismissible" style="margin:15px 0 0 0">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                                        &times;
+                                    </button>
+                                    <span th:text="${baseResult.message }"></span>
+                                </div>
+                            </th:block>
+                            <div class="row" style="padding: 10px 0 0 15px">
+                                <button type="button" onclick="App.opMulti('delete')"
+                                        class="btn btn-sm btn-danger"><i class="fa fa-trash"></i>批量删除
+                                </button>
+                            </div>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body table-responsive no-padding">
+                            <table class="table table-hover display" id="dataTable">
+                                <thead>
+                                <tr>
+                                    <th><input type="checkbox" class="minimal icheck_master"/></th>
+                                    <th>订单号</th>
+                                    <th>买家ID</th>
+                                    <th>创建时间</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+            </div>
+        </section>
+        <!-- /.content -->
+        <!-- 模态框（Modal） -->
+        <div class="modal fade" id="detail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">订单详情</h4>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table  table-condensed table-striped" id="tr">
+                        </table>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal -->
+         </div>
+    </div>
+    <th:block th:include="includes/copyright :: copyright"></th:block>
+</div>
+<th:block th:include="includes/foot :: foot"></th:block>
+<script>
+    var _dataTable;
+    $(function () {
+        var _columns = [
+            {
+                "data": function (row, type, val, meta) {
+                    if (row.id != 1)
+                        return '<input id=' + row.id + ' type="checkbox" class="minimal">';
+                    return "";
+                }
+            },
+            {"data": "orderNum"},
+            {"data": "userId"},
+            {
+                "data": function (row, type, val, meta) {
+                    if (row.created != null)
+                        return moment(row.created).format("YYYY-MM-DD HH:mm:ss");
+                    return "";
+                }
+            },
+            {
+                "data": function (row, type, val, meta) {
+                    var del_style = "";
+                    var edit_style = "";
+                    var opUrl = "delete";
+                    if (row.id == 1) {
+                        del_style = "disabled=true";
+                        // if (${sessionScope.user.id!=1}) {
+                        //     edit_style = "disabled";
+                        // }
+                    }
+                    return '<button onclick="getDetail(\'' + row.id + '\')" class="btn btn-sm btn-primary"><i class="fa fa-trash-o"></i>订单详情</button>&nbsp;&nbsp;' +
+                        '<button onclick="App.opSingle(\'' + opUrl + '\', \'' + row.id + '\')" class="btn btn-sm btn-danger" ' + del_style + ' ><i class="fa fa-trash-o"></i>删除</button>';
+                }
+            }
+        ];
+        _dataTable = App.initDataTables("/shop/order/page", _columns);
+        var param = {
+            "shopId": $("#currentId").val(),
+            "state": 5
+        }
+        _dataTable.settings()[0].ajax.data = param;
+        _dataTable.ajax.reload();
+    });
+    function getDetail(orderId) {
+        $.ajax({
+            url: "getDetail",
+            async: true,
+            type: "POST",
+            data: {
+                "orderId": orderId
+            },
+            // 成功后开启模态框
+            success: function (data) {
+                var html = '<tr><th>商品名称</th><th>缩略图</th><th>派送费</th><th>单价</th><th>数量</th><th>明细价格</th></tr>';
+                for (var i = 0; i < data.length; i++) {//循环json对象，拼接tr,td的html
+                    var money = data[i].packFee+data[i].amount*data[i].price;
+                    html = html + '<tr>';
+                    html = html + '<td>' + data[i].itemName + '</td>';
+                    html = html + '<td><img src="/upload/' + data[i].pic + '" style="width: 30px;height: 30px"></td>';
+                    html = html + '<td>' + data[i].packFee + '</td>';
+                    html = html + '<td>' + data[i].price + '</td>';
+                    html = html + '<td>' + data[i].amount + '</td>';
+                    html = html + '<td>' + money + '</td>';
+                    html = html + '</tr>';
+                }
+                $('#tr').html(html);//通过jquery方式获取table，并把tr,td的html输出到table中
+                // 显示模态框
+                $('#detail').modal('show');
+            },
+            error: function () {
+                alert("请求失败");
+            },
+            dataType: "json"
+        });
+    }
+</script>
+</body>
+</html>

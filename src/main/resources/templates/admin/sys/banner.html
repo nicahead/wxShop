@@ -1,0 +1,117 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>学子小铺>小程序设置</title>
+    <th:block th:include="includes/head :: head"></th:block>
+    <link rel="stylesheet" href="/plugins/dropzone/dropzone.css" />
+    <link rel="stylesheet" href="/plugins/dropzone/min/basic.min.css" />
+</head>
+<body class="hold-transition skin-blue sidebar-mini" >
+<div class="wrapper">
+    <th:block th:include="admin/common/header :: header"></th:block>
+    <th:block th:include="admin/common/menu :: menu"></th:block>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                首页广告
+            </h1>
+        </section>
+        <!-- Main content -->
+        <section class="content container-fluid">
+            <div class="col-md-12">
+                <!-- Horizontal Form -->
+                <div class="box box-info">
+                    <!-- /.box-header -->
+                    <th:block th:if="${baseResult!=null }">
+                        <div class="alert alert-success alert-dismissible" style="margin:15px 0 0 0">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                                &times;
+                            </button>
+                            <span th:text="${baseResult.message }"></span>
+                        </div>
+                    </th:block>
+                    <!-- form start -->
+                    <form action="/admin/sys/update" method="post" class="form-horizontal" th:object="${editSys}">
+                        <div class="box-body">
+                            <input name="type" value="banner" type="hidden">
+
+                            <div class="form-group">
+                                <label for="pic1" class="col-sm-2 control-label">图片1</label>
+                                <div class="col-sm-10">
+                                    <input name="pic1" class="form-control" id="pic1" placeholder="pic1" readonly="readonly" th:value="*{pic1}">
+                                    <div id="dropz1" class="dropzone"></div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="pic2" class="col-sm-2 control-label">图片2</label>
+                                <div class="col-sm-10">
+                                    <input name="pic2" class="form-control" id="pic2" placeholder="pic2" readonly="readonly" th:value="*{pic2}">
+                                    <div id="dropz2" class="dropzone"></div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="pic3" class="col-sm-2 control-label">图片3</label>
+                                <div class="col-sm-10">
+                                    <input name="pic3" class="form-control" id="pic3" placeholder="pic3" readonly="readonly" th:value="*{pic3}">
+                                    <div id="dropz3" class="dropzone"></div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- /.box-body -->
+                        <div class="box-footer">
+                            <button type="button" class="btn btn-default" onclick="history.go(-1)">取消</button>
+                            <button type="submit" id="btnSubmit" class="btn btn-info pull-right">提交</button>
+                        </div>
+                        <!-- /.box-footer -->
+                    </form>
+                </div>
+            </div>
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    <th:block th:include="includes/copyright :: copyright"></th:block>
+</div>
+<!-- ./wrapper -->
+<th:block th:include="includes/foot :: foot"></th:block>
+<script src="/plugins/dropzone/min/dropzone.min.js"></script>
+<script>
+    App.initDropzone({
+        id: "#dropz1",
+        url: "/upload",
+        pic: $("#pic1").val(),
+        init: function () {
+            this.on("success", function (file, data) {
+                $("#pic1").val(data.fileName);
+            });
+        }
+    });
+    App.initDropzone({
+        id: "#dropz2",
+        url: "/upload",
+        pic: $("#pic2").val(),
+        init: function () {
+            this.on("success", function (file, data) {
+                $("#pic2").val(data.fileName);
+            });
+        }
+    });
+    App.initDropzone({
+        id: "#dropz3",
+        url: "/upload",
+        pic: $("#pic3").val(),
+        init: function () {
+            this.on("success", function (file, data) {
+                $("#pic3").val(data.fileName);
+            });
+        }
+    });
+
+</script>
+</body>
+</html>
