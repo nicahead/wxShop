@@ -1,0 +1,56 @@
+spring:
+  thymeleaf:
+    cache: false # 开发时关闭缓存,不然没法看到实时页面
+    mode: HTML # 用非严格的 HTML
+    encoding: UTF-8
+    servlet:
+      content-type: text/html
+  datasource:
+    druid:
+      url: jdbc:mysql://localhost:3306/shop?useUnicode=true&characterEncoding=utf-8
+      username: root
+      password: 123456
+      initial-size: 1
+      min-idle: 1
+      max-active: 20
+      test-on-borrow: true
+      driver-class-name: com.mysql.cj.jdbc.Driver
+
+#最大文件大小。值可以使用后缀“MB”或“KB”。指示兆字节或千字节大小。
+  servlet:
+    ultipart:
+      max-file-size: -1
+# 最大请求大小可以是mb也可以是kb
+    multipart:
+      max-request-size: -1
+
+mybatis:
+  type-aliases-package: com.ytu.shop.domain #实体类的存放路径
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
+logging:
+  level:
+     com.ytu.shop.mapper : debug
+
+http:
+  port: 80
+
+server:
+  port: 443
+  servlet:
+    session:
+      timeout: 3600s
+  tomcat:
+    uri-encoding: UTF-8
+    basedir: target/tomcat
+  ssl:
+    key-store: classpath:1655744_nichang.site.pfx
+    key-store-password: NLAH0poe
+    keyStoreType: PKCS12
+#配置外部访问文件（把上传的图片视频文件放到E盘下的fileUpload文件夹下）
+uploadPath: /usr/local/docker/upload
+
+
+

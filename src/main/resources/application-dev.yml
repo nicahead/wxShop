@@ -15,6 +15,15 @@ spring:
       max-active: 20
       test-on-borrow: true
       driver-class-name: com.mysql.cj.jdbc.Driver
+
+#最大文件大小。值可以使用后缀“MB”或“KB”。指示兆字节或千字节大小。
+  servlet:
+    ultipart:
+      max-file-size: -1
+# 最大请求大小可以是mb也可以是kb
+    multipart:
+      max-request-size: -1
+
 mybatis:
   type-aliases-package: com.ytu.shop.domain #实体类的存放路径
   mapper-locations: classpath:mapper/*.xml
@@ -29,7 +38,7 @@ http:
   port: 80
 
 server:
-  port: 443
+  port: 8443
   servlet:
     session:
       timeout: 3600s
@@ -40,6 +49,8 @@ server:
     key-store: classpath:1655744_nichang.site.pfx
     key-store-password: NLAH0poe
     keyStoreType: PKCS12
+#配置外部访问文件（把上传的图片视频文件放到E盘下的fileUpload文件夹下）
+uploadPath: D:/upload/
 
 
 

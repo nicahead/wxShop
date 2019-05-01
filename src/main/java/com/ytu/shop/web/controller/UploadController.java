@@ -1,5 +1,6 @@
 package com.ytu.shop.web.controller;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,7 +15,8 @@ import java.util.*;
 @Controller
 public class UploadController {
 
-    private static final String UPLOAD_PATH = "/upload/";
+    @Value("${uploadPath}")
+    private String UPLOAD_PATH;
 
     /**
      * 文件上传
@@ -56,15 +58,13 @@ public class UploadController {
         // 获取文件后缀
         String fileName = multipartFile.getOriginalFilename();
         String fileSuffix = fileName.substring(fileName.lastIndexOf("."));
-        // 文件存放路径
-        String filePath = request.getSession().getServletContext().getRealPath(UPLOAD_PATH);
         // 判断路径是否存在，不存在则创建文件夹
-        File file = new File(filePath);
+        File file = new File(UPLOAD_PATH);
         if (!file.exists()) {
             file.mkdir();
         }
         // 将文件写入目标
-        file = new File(filePath, UUID.randomUUID() + fileSuffix);
+        file = new File(UPLOAD_PATH, UUID.randomUUID() + fileSuffix);
         try {
             multipartFile.transferTo(file);
         } catch (IOException e) {
