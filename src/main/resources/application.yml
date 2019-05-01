@@ -26,7 +26,7 @@ logging:
      com.ytu.shop.mapper : debug
 
 server:
-  port: 80
+  port: 443
   servlet:
     session:
       timeout: 3600s
@@ -35,8 +35,9 @@ server:
     basedir: target/tomcat
   erver:
     ssl:
-      key-store: classpath: ssl/1655744_nichang.site.pfx
+      key-store: classpath:1655744_nichang.site.pfx
       key-store-password: NLAH0poe
+      keyStoreType: PKCS12
 
 
 
