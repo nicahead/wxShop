@@ -37,7 +37,8 @@ public class UploadController {
         if (editorFiles != null && editorFiles.length > 0) {
             List<String> fileNames = new ArrayList<>();
             for (MultipartFile editorFile : editorFiles) {
-                fileNames.add("/upload/" + writeFile(editorFile, request));
+                String serverPath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
+                fileNames.add(serverPath+"/upload/" + writeFile(editorFile, request));
             }
             result.put("errno", 0);
             result.put("data", fileNames);
