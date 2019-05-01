@@ -52,9 +52,9 @@ public class SystemController {
         model.addAttribute("baseResult",baseResult);
         model.addAttribute("editSys",systemService.select());
         if ("setup".equals(type)){
-            return "/admin/sys/setup";
+            return "admin/sys/setup";
         }
-        return "/admin/sys/banner";
+        return "admin/sys/banner";
     }
 
     private BaseResult check(TbSystem tbSystem){
