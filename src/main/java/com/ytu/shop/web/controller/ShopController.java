@@ -62,12 +62,12 @@ public class ShopController extends BaseController<TbShop,ShopService> {
                 if (shopService.getByCode(tbShop.getLoginCode())!=null){
                     baseResult.setMessage("账号已存在");
                     model.addAttribute("baseResult", baseResult);
-                    return "/admin/shop/form";
+                    return "admin/shop/form";
                 }
                 if (StringUtils.isBlank(tbShop.getPassword())){
                     baseResult.setMessage("密码不能为空");
                     model.addAttribute("baseResult", baseResult);
-                    return "/admin/shop/form";
+                    return "admin/shop/form";
                 }
                 tbShop.setId(UUID.randomUUID().toString());
                 res = shopService.insert(tbShop);
@@ -75,11 +75,11 @@ public class ShopController extends BaseController<TbShop,ShopService> {
             if (res>0){
                 baseResult.setMessage("操作成功");
                 model.addAttribute("baseResult", baseResult);
-                return "/admin/shop/list";
+                return "admin/shop/list";
             }
         }
         model.addAttribute("baseResult", baseResult);
-        return "/admin/shop/form";
+        return "admin/shop/form";
 
     }
 

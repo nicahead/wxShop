@@ -70,12 +70,12 @@ public class ItemController extends BaseController<TbItem,ItemService> {
             if (res>0){
                 baseResult.setMessage("操作成功");
                 model.addAttribute("baseResult", baseResult);
-                return "/shop/item/list";
+                return "shop/item/list";
             }
         }
         baseResult.setMessage("操作失败");
         model.addAttribute("baseResult", baseResult);
-        return "/shop/item/form";
+        return "shop/item/form";
 
     }
 

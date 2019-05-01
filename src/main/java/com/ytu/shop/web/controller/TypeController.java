@@ -56,7 +56,7 @@ public class TypeController extends BaseController<TbType,TypeService> {
                 if (typeService.getByName(tbType.getTypeName())!=null){
                     baseResult.setMessage("该类别已存在");
                     model.addAttribute("baseResult", baseResult);
-                    return "/admin/type/form";
+                    return "admin/type/form";
                 }
                 tbType.setId(UUID.randomUUID().toString());
                 res = typeService.insert(tbType);
@@ -64,11 +64,11 @@ public class TypeController extends BaseController<TbType,TypeService> {
             if (res>0){
                 baseResult.setMessage("操作成功");
                 model.addAttribute("baseResult", baseResult);
-                return "/admin/type/list";
+                return "admin/type/list";
             }
         }
         model.addAttribute("baseResult", baseResult);
-        return "/admin/type/form";
+        return "admin/type/form";
 
     }
 

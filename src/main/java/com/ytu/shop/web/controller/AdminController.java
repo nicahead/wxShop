@@ -65,15 +65,15 @@ public class AdminController extends BaseController<TbAdmin,AdminService> {
                     baseResult.setMessage("账号已存在");
                     model.addAttribute("baseResult", baseResult);
                     if (tbAdmin.getRole() == null)
-                        return "/admin/user/myform";
-                    return "/admin/user/form";
+                        return "admin/user/myform";
+                    return "admin/user/form";
                 }
                 if (StringUtils.isBlank(tbAdmin.getPassword())){
                     baseResult.setMessage("密码不能为空");
                     model.addAttribute("baseResult", baseResult);
                     if (tbAdmin.getRole() == null)
-                        return "/admin/user/myform";
-                    return "/admin/user/form";
+                        return "admin/user/myform";
+                    return "admin/user/form";
                 }
                 tbAdmin.setId(UUID.randomUUID().toString());
                 res = adminService.insert(tbAdmin);
@@ -81,13 +81,13 @@ public class AdminController extends BaseController<TbAdmin,AdminService> {
             if (res>0){
                 baseResult.setMessage("操作成功");
                 model.addAttribute("baseResult", baseResult);
-                return "/admin/user/list";
+                return "admin/user/list";
             }
         }
         model.addAttribute("baseResult", baseResult);
         if (tbAdmin.getRole() == null)
-            return "/admin/user/myform";
-        return "/admin/user/form";
+            return "admin/user/myform";
+        return "admin/user/form";
     }
 
     private BaseResult check(TbAdmin tbAdmin){

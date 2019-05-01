@@ -45,12 +45,12 @@ public class MyShopController extends BaseController<TbShop,ShopService> {
             if (shopService.update(tbShop)>0){
                 baseResult.setMessage("操作成功");
                 model.addAttribute("baseResult", baseResult);
-                return "/shop/my/form";
+                return "shop/my/form";
             }
         }
         baseResult.setMessage("操作失败");
         model.addAttribute("baseResult", baseResult);
-        return "/shop/my/form";
+        return "shop/my/form";
 
     }
 
