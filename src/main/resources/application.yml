@@ -25,6 +25,9 @@ logging:
   level:
      com.ytu.shop.mapper : debug
 
+http:
+  port: 80
+
 server:
   port: 443
   servlet:
