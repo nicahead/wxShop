@@ -17,7 +17,7 @@ public class SystemController {
     private SystemService systemService;
 
     @ModelAttribute("editSys")
-    public TbSystem editSys(){
+    public TbSystem editSys() {
         return systemService.select();
     }
 
@@ -38,37 +38,45 @@ public class SystemController {
     }
 
     @PostMapping(value = "update")
-    public String update(TbSystem tbSystem,String type, Model model) {
+    public String update(TbSystem tbSystem, String type, Model model) {
         BaseResult baseResult = new BaseResult();
         int res = 0;
-        baseResult = check(tbSystem);
-        if (baseResult.getStatus()==200){
-            if (systemService.update(tbSystem)>0) {
+        if ("setup".equals(type)) {
+            baseResult = check(tbSystem);
+            if (baseResult.getStatus() == 200) {
+                if (systemService.update(tbSystem) > 0) {
+                    baseResult.setMessage("修改成功");
+                } else {
+                    baseResult.setMessage("修改失败");
+                }
+            }
+            model.addAttribute("baseResult", baseResult);
+            model.addAttribute("editSys", systemService.select());
+            return "admin/sys/setup";
+        } else {
+            if (systemService.update(tbSystem) > 0) {
                 baseResult.setMessage("修改成功");
-            }else{
+            } else {
                 baseResult.setMessage("修改失败");
             }
+            model.addAttribute("baseResult", baseResult);
+            model.addAttribute("editSys", systemService.select());
+            return "admin/sys/banner";
         }
-        model.addAttribute("baseResult",baseResult);
-        model.addAttribute("editSys",systemService.select());
-        if ("setup".equals(type)){
-            return "admin/sys/setup";
-        }
-        return "admin/sys/banner";
     }
 
-    private BaseResult check(TbSystem tbSystem){
+    private BaseResult check(TbSystem tbSystem) {
         BaseResult baseResult = new BaseResult();
         baseResult.setStatus(500);
-        if (StringUtils.isBlank(tbSystem.getAppID())){
+        if (StringUtils.isBlank(tbSystem.getAppID())) {
             baseResult.setMessage("AppID不能为空");
             return baseResult;
         }
-        if (StringUtils.isBlank(tbSystem.getAppSecret())){
+        if (StringUtils.isBlank(tbSystem.getAppSecret())) {
             baseResult.setMessage("AppSecret不能为空");
             return baseResult;
         }
-        if (StringUtils.isBlank(tbSystem.getAppName())){
+        if (StringUtils.isBlank(tbSystem.getAppName())) {
             baseResult.setMessage("小程序名不能为空");
             return baseResult;
         }
