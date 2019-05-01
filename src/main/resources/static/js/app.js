@@ -9,7 +9,7 @@ var App = function () {
         url: "",
         paramName: "dropFile",
         maxFiles: 1, // 一次性上传的文件数量上限
-        maxFilesize: 2, // 文件大小，单位：MB
+        maxFilesize: 5, // 文件大小，单位：MB
         acceptedFiles: ".jpg,.gif,.png,.jpeg", // 上传的类型
         addRemoveLinks: true,
         parallelUploads: 1, // 一次上传的文件数量
