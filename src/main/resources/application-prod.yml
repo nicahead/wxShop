@@ -50,7 +50,7 @@ server:
     key-store-password: NLAH0poe
     keyStoreType: PKCS12
 #配置外部访问文件（把上传的图片视频文件放到E盘下的fileUpload文件夹下）
-uploadPath: /usr/local/docker/upload
+uploadPath: /usr/local/docker/upload/
 
 
 
