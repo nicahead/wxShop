@@ -1,0 +1,14 @@
+<view class="page">
+  <view class="page__bd">
+    <view class="weui-tab__content" style='width:100%;' hidden="{{ msgList.length !== 0 }}">
+      <wux-prompt visible="{{ msgList.length === 0 }}" icon="{{ msg.icon }}" title="{{ msg.title }}" />
+    </view>
+    <wux-wing-blank wx:for="{{msgList}}" wx:key="*this" size="default">
+      <view class="sub-title" style='height:10rpx;'></view>
+      <wux-card  title="系统消息" thumb="/images/sys.png" thumbStyle="width:40rpx;height:40rpx;">
+        <view slot="body">{{item.content}}</view>
+        <view slot="footer">{{item.remark}}</view>
+      </wux-card>
+    </wux-wing-blank>
+  </view>
+</view>

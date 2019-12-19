@@ -1,0 +1,33 @@
+<form bindsubmit="formSubmit" class='form'>
+  <view class="section">
+    <view class="section-title">联系人</view>
+    <view class="section-input">
+      <input name="receiver" value='{{address.receiver}}' placeholder="请输入联系人" />
+    </view>
+  </view>
+  <view class="section">
+    <view class="section-title">手机号</view>
+    <view class="section-input">
+      <input name="phone" value='{{address.phone}}' placeholder="请输入手机号" />
+    </view>
+  </view>
+  <view class="section">
+    <view class="section-title">选择地区</view>
+    <view class="section-input">
+      <picker mode="region" name="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
+        <view class="section-picker">
+          {{region[0]}}，{{region[1]}}，{{region[2]}}
+        </view>
+      </picker>
+    </view>
+  </view>
+    <view class="section">
+    <view class="section-title">详细地址</view>
+    <view class="section-input">
+      <input name="info" value='{{address.info}}' placeholder="请输入详细地址" />
+    </view>
+  </view>
+  <view class='form-btn' >
+    <button size='default' formType="submit">保存收货地址</button>
+  </view>
+</form>

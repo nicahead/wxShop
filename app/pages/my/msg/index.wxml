@@ -1,0 +1,34 @@
+<view class='container'>
+  <view class="middle">
+    <navigator class='middle-item' url="/pages/my/msg/sys/index">
+      <view class='left'>
+        <image src="/images/notice.png"></image>
+      </view>
+      <view class='center'>通知</view>
+      <view class='right'>
+        <image src='/images/arrow-right.png'></image>
+      </view>
+    </navigator>
+
+    <navigator class='middle-item'>
+      <view class='left'>
+        <image src="/images/server.png"></image>
+      </view>
+      <button class='btnservice' open-type="contact">客户消息</button>      
+      <view class='right'>
+        <image src='/images/arrow-right.png'></image>
+      </view>
+    </navigator>
+
+    <!-- <navigator class='middle-item' url='/pages/my/msg/shop/index'>
+      <view class='left'>
+        <image src="/images/msg.png"></image>
+      </view>
+      <view class='center'>洛阳小嘴煲煲掂</view>
+      <view class='right'>
+        <image src='/images/arrow-right.png'></image>
+      </view>
+    </navigator> -->
+
+  </view>
+</view>

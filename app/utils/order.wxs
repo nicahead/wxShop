@@ -1,0 +1,67 @@
+var filter = {
+  orderStatus: function (value) {
+    //0-已删除 1-待付款 2-待发货  3-待收货 4-待评价 5-已完成
+    var str = '';
+    if (value == 1) {
+      //全部
+      str = '待付款';
+    } else if (value == 2) {
+      str = '待发货';
+    } else if (value == 3) {
+      str = '待收货';
+    } else if (value == 4) {
+      str = '待评价';
+    } else if (value == 5) {
+      str = '已完成';
+    }else {
+      str = '未知状态';
+    }
+    return str;
+  },
+  imgPath: function (value) {
+		return 'https://nichang.site/upload/' + value;
+  },
+  dateFormat: function (value) {
+    var date = getDate(value);
+    var y = date.getFullYear();
+    var m = date.getMonth() + 1;
+    m = m < 10 ? ('0' + m) : m;
+    var d = date.getDate();
+    d = d < 10 ? ('0' + d) : d;
+    var h = date.getHours();
+    h = h < 10 ? ('0' + h) : h;
+    var minute = date.getMinutes();
+    var second = date.getSeconds();
+    minute = minute < 10 ? ('0' + minute) : minute;
+    second = second < 10 ? ('0' + second) : second;
+    return y + '-' + m + '-' + d + ' ' + h + ':' + minute + ':' + second;
+  },
+  ymdFormat: function (value) {
+    var date = getDate(value);
+    var y = date.getFullYear();
+    var m = date.getMonth() + 1;
+    m = m < 10 ? ('0' + m) : m;
+    var d = date.getDate();
+    d = d < 10 ? ('0' + d) : d;
+    return y + '-' + m + '-' + d;
+  },
+  evalStatus: function (value) {
+    var str = '';
+    if (value == 1) {
+      //全部
+      str = 'ok.png';
+    } else if (value == -1) {
+      str = 'bad.png';
+    } else {
+      str = 'm.png';
+    }
+    return str;
+  }
+}
+module.exports = {
+  orderStatus: filter.orderStatus,
+  imgPath: filter.imgPath,
+  dateFormat: filter.dateFormat,
+  ymdFormat: filter.ymdFormat,
+  evalStatus:filter.evalStatus
+}

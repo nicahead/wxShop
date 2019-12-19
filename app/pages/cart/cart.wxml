@@ -1,0 +1,67 @@
+<!--pages/index/shoppingcar.wxml-->
+<wxs src="../../utils/order.wxs" module="filter" />
+<!--要是够车内没有数据，就显示没有数据-->  
+<view class="cart" hidden="{{goodsCount>0?true:false}}">
+<image src="../../images/empty.png"/>  
+    <view>购物车什么都没有，赶快去购物吧</view>  
+</view>
+<view hidden="{{goodsCount>0?false:true}}">
+<view class="top">
+  <view style='margin-right:530rpx;color: #777;'>共{{goodsCount}}件宝贝</view>
+</view>
+<scroll-view scroll-y='true' style='width:100%;margin-top:70rpx;margin-bottom:120rpx;background:white'>
+  <block wx:for="{{cartList}}">
+    <view class="goods" hover-class="weui-cell_active">
+      <!--左侧图片-->
+      <view>
+        <image src="{{filter.imgPath(item.pic)}}" class="good-img" />
+      </view>
+      <!--右侧说明部分-->
+      <view class="good-cont">
+        <!--文字说明-->
+        <view>
+          <view class="goods-navigator">
+            <text>{{item.itemName}}</text>
+          </view>
+        
+        </view>
+        <!--价钱和购物加减的父盒子-->
+        <view class="good-price">
+          <text class="price">￥{{item.price}}</text>
+          <view class="btn">
+            <!--button id="del{{index}}" type="default" size="mini" bindtap="delCount">-</button-->
+            <view bindtap='delCount' data-index='{{index}}' class='btnview'>-</view>
+            <input disabled value="{{item.num}}" />
+            <view bindtap='addCount' data-index='{{index}}' class='btnview'>+</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+
+</scroll-view>
+
+
+<view hidden='{{edit}}' class="total">
+  <view style='displa:flex;flex:1;'>
+    
+  </view>
+  <view style='margin-right:20rpx'>
+    <view class="total_text">合计：
+      <text>￥{{amount}}</text>
+    </view>
+    <!-- <view style='color: #777;float: right;'>不含运费</view> -->
+  </view>
+
+  <view class="total_js" bindtap='addOrder'><text>去结算({{goodsCount}})</text></view>
+</view>
+<view hidden='{{!edit}}' class="total">
+  <view style='displa:flex;flex:1;'>
+    <radio bindtap='selAll' color='red' style='transform:scale(0.8);' checked="{{selAll}}"></radio>
+    <text>全选</text>
+  </view>
+  <!--view class="total_js2" style='margin-right:5rpx' bindtap='toshoucang'><text>移到收藏</text></view-->
+  <view class="total_js2" style='margin-right:2rpx' bindtap='collectGoods'><text>移入收藏</text></view>
+  <view class="total_js2" bindtap='delGoods'><text>删除</text></view>
+</view>
+</view>

@@ -1,0 +1,20 @@
+<wxs module="filter" src="../../../../utils/tool.wxs"></wxs>
+<view class="page">
+  <view class="page__hd">
+    <view class="page__title">退款单号  {{refund.outRefundNo}}</view>
+    <view class="page__title">退款金额  {{refund.refundFee}}元</view>
+    <view class="page__title">退回账户  微信零钱(请到微信中零钱明细核实)</view>
+  </view>
+  <view class="page__bd">
+    <view class="sub-title">退款流程</view>
+    <view class="order-empty" hidden="{{record.length>0}}">
+    <image mode='' style='margin-left: 130px;width: 120px;height: 100px;margin-bottom: 10px;  ' src="/images/empty.png" />
+    <view style='width:100%;color:#999;text-align:center;padding-top:10rpx'>暂无相关流程</view>
+  </view>
+    <wux-steps direction="vertical">
+     <block wx:for="{{record}}" wx:key="id">
+      <wux-step status="process" title="{{item.msg}}" content="{{item.msg}}" subcontent="{{filter.timeFormat(item.createtime)}}"></wux-step>
+      </block>
+    </wux-steps>
+  </view>
+</view>

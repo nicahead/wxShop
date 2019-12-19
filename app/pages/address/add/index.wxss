@@ -1,0 +1,37 @@
+/* pages/address/edit/index.wxss */
+.form{
+  display: flex;
+  flex-direction: column;
+  width:750rpx;
+  font-size: 28rpx;
+}
+.form .section{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height:100rpx;
+  line-height:100rpx;
+  border-bottom:1rpx solid #f4f4f4;
+}
+.form .section-title{
+  width:150rpx;
+  padding-left:20rpx;
+  text-align: right;
+}
+.form .section-input{
+  margin-left:30rpx;
+   width:570rpx;
+}
+.form .section input{
+   width:100%;
+}
+
+.form .form-btn{
+  margin-top:100rpx;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+}
+.form .form-btn button{
+  background-color: #df2f2f;
+  color:#fff;
+}

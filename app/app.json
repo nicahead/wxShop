@@ -1,0 +1,76 @@
+{
+  "pages":[
+	  "pages/welcome/index",
+		"pages/type/type",
+    "pages/index/index",
+		"pages/shop/shop",
+		"pages/item/item",
+    "pages/my/order/refund/index",
+    "pages/my/order/record/index",
+    "pages/my/msg/sys/index",
+    "pages/my/msg/shop/index",
+    "pages/my/collect/index",
+    "pages/topay/topay",
+    "pages/topay/msg/msg_success",
+    "pages/topay/msg/msg_fail",
+    "pages/my/my",
+    "pages/my/setup/setup",
+    "pages/my/setup/aboutus/index",
+    "pages/my/setup/contactus/index",
+    "pages/search/search",
+    "pages/confirm/index",
+    "pages/my/wallet/wallet",
+    "pages/my/wallet/bill/bill",
+    "pages/my/wallet/payset/payset",
+		"pages/my/order/index/index",
+    "pages/my/myinfor/myinfor",
+    "pages/address/edit/index",
+    "pages/address/add/index",
+    "pages/address/list/index",
+    "pages/address/select/index",
+    "pages/cart/cart",
+    "pages/my/msg/index",
+    "pages/rate/index",
+		"pages/buy/index"
+  ],
+  "window":{
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F4BD00",
+    "navigationBarTitleText": "八方汇学子小铺",
+    "navigationBarTextStyle": "#fff",
+    "enablePullDownRefresh": false
+  },
+  "tabBar": {
+    "color": "#b1b1b1",
+    "selectedColor": "#f50",
+    "borderStyle": "#ffffff",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath" :"images/home-off.png",
+        "selectedIconPath":"images/home-on.png"
+      },
+			{
+				"pagePath": "pages/type/type",
+				"text": "分类",
+				"iconPath": "images/type-off.png",
+				"selectedIconPath": "images/type-on.png"
+			},
+      {
+        "pagePath": "pages/cart/cart",
+        "text": "购物车",
+        "iconPath": "images/cart-off.png",
+        "selectedIconPath": "images/cart-on.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的",
+        "iconPath": "images/user-off.png",
+        "selectedIconPath": "images/user-on.png"
+      }
+    ]
+  },
+  "debug": true
+}

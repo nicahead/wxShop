@@ -1,0 +1,50 @@
+<view class="member_1" >
+          <scroll-view scroll-y class="member_2" >
+               <view class="member_4" >
+                    <view class="member_5" >
+                         <image src="/images/money.png" style=" width:127rpx;height:126rpx;"  border="0"   bindtap="member_6_click"  class="member_6" ></image>
+                         <view class="member_7" >
+                              <text class="member_8" >{{money}}元</text>
+                              <view class="member_9" >
+                                   <text class="member_11" >余额</text>
+                              </view>
+                         </view>
+                    </view>
+               </view>
+   
+               <view class="member_25" >
+                    <view class="member_26" >
+                         <view class="member_27" >
+                              <navigator class='middle-item' url="/pages/my/wallet/bill/bill">
+                              <view class="member_28" >
+                                   <view class="member_29" >
+                                        <image src="/images/detail.png" style=" width:42rpx;height:39rpx;"  border="0"   bindtap="member_30_click"  class="member_30" ></image>
+                                        <text class="member_31" >收支明细</text>
+                                   </view>
+                                   <image src="/images/arrow-right.png"  bindtap="member_32_click"  class="member_32" ></image>
+                              </view>
+                              </navigator>
+                              <view class="member_33" >
+                              </view>
+                         </view>
+                         <!--
+                         <view class="member_34" >
+                          <navigator class='middle-item' url="/pages/my/wallet/payset/payset">
+                              <view class="member_35" >
+                                   <view class="member_36" >
+                                        <image src="/images/setup.png" style=" width:42rpx;height:39rpx;"  border="0"   bindtap="member_37_click"  class="member_37" ></image>
+                                        <text class="member_38" >支付设置</text>
+                                   </view>
+                                   <image src="/images/arrow-right.png" bindtap="member_39_click"  class="member_39" ></image>
+                              </view>
+                               </navigator>
+                              <view class="member_40" >
+                              </view>
+                         </view>
+                         -->
+                    </view>
+               </view>
+          
+          </scroll-view>
+          
+     </view>

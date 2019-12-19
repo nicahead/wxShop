@@ -1,0 +1,31 @@
+/**index.wxss**/
+page{
+  background-color: #f4f4f4;
+}
+.container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.container .container-logo{
+  width:200rpx;
+  height:200rpx;
+  margin-top:100rpx;
+}
+.container .container-top{
+   margin-top:100rpx; 
+}
+.container .container-top button{
+  width:150rpx;
+  height:60rpx;
+  line-height:60rpx;
+  font-size:32rpx;
+  color:#fff;
+  background-color:#df2f2f;
+  border-radius: 5rpx;
+
+}
+.container .container-bottom{
+  margin-top:400rpx;
+  color:#df2f2f;
+}

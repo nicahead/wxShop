@@ -1,0 +1,88 @@
+<view class='container'>
+  <view class="top">
+    <view class="top-image">
+      <image src="{{userInfo.avatarUrl}}"></image>
+    </view>
+    <view class="top-nickname" bindtap="editUser">
+      <text>{{userInfo.nickName}}</text>
+      <!-- <view class="top-saoma" style='margin-left:20rpx;'>
+        <image src="/images/setup.png"></image>
+      </view> -->
+    </view>
+    <view class="top-saoma">
+      <image src="/images/pic_code.png"></image>
+    </view>
+  </view>
+
+  <view class="middle">
+    <!-- <navigator class='middle-item' url="/pages/my/wallet/wallet">
+      <view class='left'>
+        <image src="/images/wallet.png"></image>
+      </view>
+      <view class='center'>我的钱包</view>
+      <view class='right'>
+        <image src='/images/arrow-right.png'></image>
+      </view>
+    </navigator> -->
+
+    <navigator class='middle-item' url='/pages/my/order/index/index'>
+      <view class='left'>
+        <image src="/images/order.png"></image>
+      </view>
+      <view class='center'>我的订单</view>
+      <view class='right'>
+        <image src='/images/arrow-right.png'></image>
+      </view>
+    </navigator>
+
+      <!-- <navigator class='middle-item' url='/pages/my/order/refund/index'>
+      <view class='left'>
+        <image src="/images/order.png"></image>
+      </view>
+      <view class='center'>我的退款</view>
+      <view class='right'>
+        <image src='/images/arrow-right.png'></image>
+      </view>
+    </navigator> -->
+
+    <!-- <navigator class='middle-item' url='/pages/my/collect/index'>
+      <view class='left'>
+        <image src="/images/star.png"></image>
+      </view>
+      <view class='center'>我的收藏</view>
+      <view class='right'>
+        <image src='/images/arrow-right.png'></image>
+      </view>
+    </navigator> -->
+
+    <navigator class='middle-item' url='/pages/address/list/index'>
+      <view class='left'>
+        <image src="/images/iconfont-shouhuodizhi.png"></image>
+      </view>
+      <view class='center'>收货地址</view>
+      <view class='right'>
+        <image src='/images/arrow-right.png'></image>
+      </view>
+    </navigator>
+
+    <navigator class='middle-item' url='/pages/my/msg/index'>
+      <view class='left'>
+        <image src="/images/message.png"></image>
+      </view>
+      <view class='center'>消息</view>
+      <view class='right'>
+        <image src='/images/arrow-right.png'></image>
+      </view>
+    </navigator>
+
+    <navigator class='middle-item' url='/pages/my/setup/setup'>
+      <view class='left'>
+        <image src="/images/setup.png"></image>
+      </view>
+      <view class='center'>设置</view>
+      <view class='right'>
+        <image src='/images/arrow-right.png'></image>
+      </view>
+    </navigator>
+  </view>
+</view>

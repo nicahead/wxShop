@@ -1,0 +1,31 @@
+<view class="weui-cells__title"></view>
+<view class="weui-cells weui-cells_after-title">
+  <view class="weui-cell weui-cell_select">
+    <view class="weui-cell__bd weui-cell__bd_in-select-before">
+      <input class="weui-input" placeholder="请输入号码" bindinput='inputMobile'/>
+    </view>
+    <view class="weui-cell__hd" style="width: 105px;">
+      <button style='margin-top:6px' disabled="{{disabled}}" class="weui-btn mini-btn" type="primary" size="mini" bindtap="getCode">{{time}}</button>
+    </view>
+  </view>
+</view>
+
+<view class="weui-cells__title"></view>
+<view class="weui-cells weui-cells_after-title">
+  <view class="weui-cell weui-cell_select">
+    <view class="weui-cell__bd weui-cell__bd_in-select-before">
+      <input class="weui-input" placeholder="请输入验证码" bindinput='bindKeyInputCode'/>
+    </view>
+  </view>
+  <view class="weui-cell weui-cell_select">
+    <view class="weui-cell__bd weui-cell__bd_in-select-before">
+      <input class="weui-input" placeholder="请输入支付密码" bindinput='bindKeyInputPass' password="true"/>
+    </view>
+  </view>
+  <view class="weui-cell weui-cell_select">
+    <view class="weui-cell__bd weui-cell__bd_in-select-before">
+      <input class="weui-input" placeholder="请输入确认密码" bindinput='bindKeyInputRepass' password="true"/>
+    </view>
+  </view>
+</view>
+<button class="weui-btn" type="primary" bindtap='submitPass'>提交</button>

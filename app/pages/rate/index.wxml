@@ -1,0 +1,26 @@
+<wxs module="filter" src="../../utils/order.wxs"></wxs>
+<view class="page">
+  <view class="page__hd">
+    <view class="page__title"></view>
+  </view>
+  <view class="page__bd">
+    <wux-white-space size="small" />
+    <block wx:for="{{orderList}}" wx:id="id">
+      <wux-card bordered="false" full="{{ true }}" fontSize="20" title="用户" extra="{{filter.dateFormat(item.evldate)}}" thumb="/images/{{filter.evalStatus(item.grade)}}">
+        <view slot="footer">
+          <wux-cell title="口味" hover-class="none">
+            <wux-rater slot="footer" default-value="{{item.flavor}}" fontSize="20" active-color="#33cd5f" disabled/>
+          </wux-cell>
+          <wux-cell title="服务" hover-class="none">
+            <wux-rater slot="footer" default-value="{{item.service}}" fontSize="20" active-color="#33cd5f" disabled/>
+          </wux-cell>
+          <wux-cell title="快递" hover-class="none">
+            <wux-rater slot="footer" default-value="{{item.delivery}}" fontSize="20" active-color="#33cd5f" disabled/>
+          </wux-cell>
+        </view>
+        <view slot="body">{{item.content==null?'默认评价':item.content}}</view>
+      </wux-card>
+      <wux-white-space size="small" />
+    </block>
+  </view>
+</view>

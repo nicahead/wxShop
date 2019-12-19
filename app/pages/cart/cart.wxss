@@ -1,0 +1,157 @@
+/* pages/index/shoppingcar.wxss */
+.cart {  
+  padding: 100px 0 0 0;  
+  display: flex;  
+  justify-content: center;  
+  flex-direction: column;  
+  align-items: center;  
+  color: #999;  
+}  
+  
+.cart image {  
+  width: 66px;  
+  height: 66px;  
+  margin-bottom: 20px;  
+}
+.top {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  height: 70rpx;
+  background: #fff;
+  align-items: center;
+  position: fixed;
+  top: 0rpx;
+  right: 0;
+  left: 0;
+  border-bottom: 1rpx solid #d9d9d9;
+  z-index: 99;
+}
+
+.goods {
+  background: #fff;
+  border-top: 1px solid #ddd;
+  margin-bottom: 10px;
+  padding: 10px 5px 0 5px;
+  display: flex;
+  align-items: center;
+}
+
+.goods image {
+  width: 80px;
+  height: 80px;
+}
+
+.good-cont {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-between;
+  color: #555;
+  font-size: 12px;
+  padding: 5px;
+}
+
+.goods-navigator {
+  display: flex;
+  font-size: 14px;
+  flex: 1;
+}
+
+.goods-navigator text {
+  display: -webkit-box;
+  word-break: break-all;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  height: 3em
+}
+
+.good-price {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex: 3;
+}
+
+.price {
+  display: flex;
+  font-size: 16px;
+  color: #ec5151;
+  height: 25px;
+  align-items: center;
+}
+
+.btn {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid #eee;
+  height: 25px;
+}
+
+.btn input {
+  margin: 0;
+  width: 40px;
+  text-align: center;
+  font-size: 14px;
+  height: 25px;
+  border-left: 1px solid #eee;
+  border-right: 1px solid #eee;
+}
+
+.btnview {
+  display: flex;
+  justify-content: center;
+  font-size: 16px;
+  width: 25px;
+  height: 25px;
+}
+
+.btn button {
+  margin: 0;
+}
+
+.total {
+  height: 120rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-left:5px;
+  background: #fff;
+  position: fixed;
+  bottom: 0rpx;
+  right: 0;
+  left: 0;
+  border-top: 1rpx solid #d9d9d9;
+}
+
+.total .total_text {
+  display: flex;
+}
+
+.total .total_text text {
+  color: red;
+}
+
+.total .total_js {
+  color: #fff;
+  background: #ed9f75;
+  height: 120rpx;
+  width: 150rpx;
+  padding: 0 10rpx;
+  display: flex;
+  align-items: center;
+  justify-content:center;
+}
+.total_js2 {
+  color: #fff;
+  background: #ed9f75;
+  height: 120rpx;
+  width: 150rpx;
+  padding: 0 10rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

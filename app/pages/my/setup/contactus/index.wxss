@@ -1,0 +1,7 @@
+/* pages/about/about.wxss */
+#wrap{
+	margin:25rpx 30rpx ;
+	font-size: 30rpx;
+	font-family: "仿宋";
+	font-weight: 600;
+}

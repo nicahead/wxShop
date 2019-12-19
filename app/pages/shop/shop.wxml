@@ -1,0 +1,21 @@
+<wxs src="../../utils/order.wxs" module="filter" />
+<view class="container">
+  <!-- 上部-->
+  <view class='head' style="background-image: url({{filter.imgPath(shop.shopBg)}})">
+    <image class='head-logo' mode='aspectFill' src='{{filter.imgPath(shop.shopLogo)}}'></image>
+    <view class="shop">
+      <text class="title">{{shop.shopName}}</text>
+      <text class="desc">{{shop.descp}}</text>
+    </view>
+  </view>    
+	<view id='title'>热卖商品</view>
+  <view id='items'>
+  <view wx:for="{{itemList}}" wx:key="{{item.id}}" class='index-item' bindtap='gotodetail' data-id='{{item.id}}'>
+    <!-- <navigator url="/pages/detail/detail?id={{index}}"> -->
+		<image src="{{filter.imgPath(item.pic)}}"></image>
+    <view>{{item.itemName}}</view>
+    <!-- </navigator> -->
+  </view>
+</view>
+
+</view>

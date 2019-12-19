@@ -1,0 +1,37 @@
+<wxs module="filter" src="../../../../utils/order.wxs"></wxs>
+<view class="weui-tab__content">
+  <!--隐藏 -->
+  <view class="order-empty" hidden="{{orderList.length>0}}">
+    <image mode='' style='width: 120px;height: 100px;margin-bottom: 20px;  ' src="/images/empty.png" />
+    <view style='width:100%;color:#999;text-align:center;padding-top:50rpx'>暂无相关订单</view>
+  </view>
+  <!--订单信息 -->
+  <scroll-view scroll-y='true' class='container'>
+    <view class='item' wx:for="{{orderList}}" wx:key="{{item.id}}">
+      <view class='item-top'>
+        <view class='left'>{{item.ordernum}}</view>
+        <view class='right'>{{filter.orderStatus(item.status)}}</view>
+      </view>
+      <view wx:for="{{item.tblOrderDetail}}" wx:for-item="og" wx:key="{{og.id}}" class='item-middle'>
+        <view class='left'>
+          <image src='{{filter.imgPath(og.dishimg)}}'></image>
+        </view>
+        <view class='center-name'>{{og.dishname}}</view>
+        <view class='center-nums'>{{og.amount}}</view>
+        <view class='right'>{{og.price}}</view>
+      </view>
+      <view class='item-bottom'>共计{{item.bycount}}件 合计￥{{item.money}}元
+        <block wx:if="{{item.way!='到店消费'}}">
+          （其中包装{{item.packfee}}元，配送{{item.exprfee}}元)
+        </block>
+      </view>
+      <view class='item-bottom'>
+        <!--待配送 -->
+        <view class="btn">
+          <button id="{{item.id}}" data-ordernum="{{item.ordernum}}" class="weui-btn mini-btn" type="default" size="mini" bindtap='refunde'>退款进度</button>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</view>
+<!--一个tab结束 -->

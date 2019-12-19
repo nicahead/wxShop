@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "用户评价",
+  "usingComponents": {
+    "wux-card": "../../dist/card/index",
+    "wux-wing-blank": "../../dist/wing-blank/index",
+    "wux-cell-group": "../../dist/cell-group/index",
+    "wux-cell": "../../dist/cell/index",
+    "wux-rater": "../../dist/rater/index",
+    "wux-white-space": "../../dist/white-space/index"
+  }
+}

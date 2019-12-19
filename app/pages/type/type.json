@@ -1,0 +1,8 @@
+{
+	"disableScroll": true,
+	"usingComponents": {
+		"wux-notice-bar": "../../dist/notice-bar/index",
+		"wux-search-bar": "../../dist/search-bar/index",
+		"wux-prompt": "../../dist/prompt/index"
+	}
+}

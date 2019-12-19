@@ -1,0 +1,41 @@
+<view class="page">
+  <view class="address-list">
+    <view class="cart" hidden="{{addressList.length!=0}}">
+      <image class="empty" src="/images/empty.png"/>
+      <view>暂无收货地址</view>
+    </view>
+    <view class="weui-form-preview" wx:for-items="{{addressList}}" wx:key="{{index}}">
+      <view class="weui-form-preview__bd">
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">收货人:{{item.receiver}}</view>
+          <view class="weui-form-preview__value">{{item.tel}}</view>
+        </view>
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">收货地址:{{item.province}}{{item.city}}{{item.area}}{{item.detail}}</view>
+        </view>
+      </view>
+      <view class="weui-form-preview__bd" style='border-top:solid 1px #f8f8f8;'>
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label" style='margin-left:10rpx;'>
+            <block wx:if="{{item.id!=defaultAddress}}">
+              <radio data-id="{{item.id}}" value="{{item.id}}" bindtap="defaultAddress" />设为默认
+            </block>
+            <block wx:if="{{item.id==defaultAddress}}">
+              <radio value="{{item.id}}" checked="true" />默认地址
+            </block>
+          </view>
+          <view class="weui-form-preview__value" style='display:fex;flex-direction:column-reverse;white-space：nowrap;'>
+             <view class="meta-edit" style='display: inline-block;' bindtap="editAddress" data-id="{{item.id}}"></view>
+             <view class="meta-delete" style='display: inline-block;' bindtap="deleteAddress" data-id="{{item.id}}"></view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <navigator bindtap='toAdd' open-type='redirect'>
+      <view class="add-address">
+        <button class="weui-btn" type="warn">新增收货地址</button>
+      </view>
+    </navigator>
+  </view>
+</view>

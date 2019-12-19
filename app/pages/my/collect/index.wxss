@@ -1,0 +1,80 @@
+page,.page,.page__bd{
+    height: 100%;
+    font-size: 28rpx;
+}
+.page__bd{
+    padding-bottom: 0;
+}
+.weui-tab__content{
+    padding-top: 60px;
+    text-align: center;
+}
+.main-right {
+  height: 620rpx;
+  width: 750rpx;
+  margin-left: 20rpx;
+}
+
+.dish-list{
+  margin-top: 20rpx;
+}
+
+.main-right-item {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 50rpx;
+  justify-content: space-between;
+}
+
+.main-right-item-photo {
+  height: 130rpx;
+  border: solid 1px #eee;
+}
+
+.main-right-item-photo image {
+  width: 160rpx;
+  height: 160rpx;
+}
+
+.main-right-item-detail {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width:750rpx;
+  margin-left: 10rpx;
+}
+
+.main-right-item-del {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100rpx;
+}
+
+.main-right-item-detail .name {
+  font-size: 28rpx;
+}
+
+.main-right-item-detail .price {
+  color: #df2f2f;
+}
+
+.main-right-item-detail  .price-del{
+  text-decoration:line-through;
+}
+
+.main-right-item-handle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  width: 150rpx;
+}
+.icon{
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.main-right-item-handle .num {
+  text-align: center;
+}

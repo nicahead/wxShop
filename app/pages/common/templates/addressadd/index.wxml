@@ -1,0 +1,12 @@
+<template name="addressadd">
+  <navigator class='addressadd' url='/pages/my/address/edit/edit'>
+    <view class='left'>
+      <image src='/images/ico-add-addr.png'></image>
+    </view>
+
+    <view class='center'>新增收货地址</view>
+    <view class='right'>
+      <image src='/images/arrow-right.png'></image>
+    </view>
+  </navigator>
+</template>

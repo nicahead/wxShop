@@ -1,0 +1,10 @@
+<!--index.wxml-->
+<view class='container'>
+  <image class='container-logo' src='/images/order.jpg'></image>
+  <view class='container-top'>
+    <button open-type='getUserInfo' bindgetuserinfo="bindGetUserInfo">登录</button>
+  </view>
+  <view class='container-bottom'>
+    <text>{{title}}</text>
+  </view>
+</view>

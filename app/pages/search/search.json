@@ -1,0 +1,8 @@
+{
+  "disableScroll": true,
+  "navigationBarTitleText": "商品搜索",
+  "usingComponents": {
+    "wux-search-bar": "../../dist/search-bar/index",
+    "wux-prompt": "../../dist/prompt/index"
+  }
+}

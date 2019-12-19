@@ -1,0 +1,32 @@
+<wxs module="filter" src="../../utils/order.wxs"></wxs>
+<view class="container">
+  <!--搜索框部分 -->
+ <wux-search-bar clear bind:change="getKey" bind:blur="searchItem"/>
+  <!--搜索结束-->
+  <view class='main' >
+    <view class="weui-tab__content" style='width:100%;height:1280rpx;' hidden="{{ dishList.length !== 0 }}">
+      <wux-prompt visible="{{ dishList.length === 0 }}" icon="{{ msg.icon }}" title="{{ msg.title }}" />
+    </view>
+    <!-- 右侧内容区域 -->
+    <scroll-view class='main-right' scroll-y="true">
+      <view wx:for="{{itemList}}" wx:key="{{item.id}}" class='main-right-item'                      bindtap='gotoitem' data-id='{{item.id}}'>
+        <view class='main-right-item-photo'>
+          <image src="{{filter.imgPath(item.pic)}}"></image>
+					<view wx:if="{{item.stock == 0}}" class="sale-out">无货</view>
+        </view>
+        <view class='main-right-item-detail'>
+          <view class='name'>
+            <text class='itemName'>{{item.itemName}}</text>
+          </view>
+          <!-- <view class='shop'>
+            <text>{{item.shopName}}</text>
+          </view> -->
+          <view class='price'>
+					  <text>￥{{item.price}}</text>
+            <text style='float:right'>已售{{item.sale}}</text>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</view>

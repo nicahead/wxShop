@@ -1,0 +1,7 @@
+.page{
+  background-color: #f8f8f8;
+  font-size: 10rpx;
+}
+.wux-card__extra{
+  font-size: 15rpx;
+}

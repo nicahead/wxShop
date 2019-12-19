@@ -1,0 +1,16 @@
+<wxs src="../../utils/order.wxs" module="filter" />
+<swiper id="banner" autoplay="{{autoplay}}" duration="{{duration}}" indicator-dots="{{indicatorDots}}" interval="{{interval}}" indicator-color="{{indicatorColor}}" circular="{{true}}">
+  <swiper-item wx:for="{{banner}}" wx:key="this">
+    <image class="slide-image" mode="aspectFill" src='{{filter.imgPath(item)}}'></image>
+  </swiper-item>
+</swiper>
+
+<view id='title'>新品推荐</view>
+<view id='items'>
+  <view wx:for="{{newList}}" wx:key="{{item.id}}" class='index-item' bindtap='gotodetail' data-id='{{item.id}}'>
+    <!-- <navigator url="/pages/detail/detail?id={{index}}"> -->
+		<image src="{{filter.imgPath(item.pic)}}"></image>
+    <view class="itemName">{{item.itemName}}</view>
+    <!-- </navigator> -->
+  </view>
+</view>

@@ -1,0 +1,52 @@
+<wxs src="../../utils/order.wxs" module="filter" />
+
+<view class="container">
+  <!--搜索框部分 -->
+  <view class="search">
+    <view class="weui-search-bar__form">
+      <view class="weui-search-bar__box">
+        <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+        <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{searchInputVal}}" focus="{{searchShowed}}" bindfocus="inputTyping" bindtap='gotoSearch' />
+        <view class="weui-icon-clear" wx:if="{{searchInputVal.length > 0}}" bindtap="clearInput">
+          <icon type="clear" size="14"></icon>
+        </view>
+      </view>
+    </view>
+    <view class="weui-search-bar__cancel-btn" hidden="{{!searchShowed}}" bindtap="hideInput">取消</view>
+    
+  </view>
+  <!--搜索结束-->
+  <!-- <view class="infor">
+    <wux-notice-bar loop content="{{notice}}" />
+  </view> -->
+  <view class='main'>
+    <!-- 左侧分类 -->
+    <scroll-view class='main-left' scroll-y="true">
+      <view data-id='0' class='{{checkid==0?"checked":"normal"}}' bindtap='onCateChange'>热卖推荐</view>
+      <view data-id='{{item.id}}' wx:for="{{typeList}}" wx:key="{{item.id}}" bindtap='onCateChange' class='{{item.id==checkid?"checked":"normal"}}'>
+        {{item.typeName}}</view>
+    </scroll-view>
+    <!-- 右侧内容区域 -->
+    <scroll-view class='main-right' scroll-y="true">
+      <view wx:for="{{itemList}}" wx:key="{{item.id}}" class='main-right-item'                      bindtap='gotoitem' data-id='{{item.id}}'>
+        <view class='main-right-item-photo'>
+          <image src="{{filter.imgPath(item.pic)}}"></image>
+					<view wx:if="{{item.stock==0}}" class="sale-out">无货</view>
+        </view>
+        <view class='main-right-item-detail'>
+          <view class='name'>
+            <text class='itemName'>{{item.itemName}}</text>
+          </view>
+          <!-- <view class='shop'>
+            <text>{{item.stock}}</text>
+          </view> -->
+          <view class='price'>
+					  <text>￥{{item.price}}</text>
+            <text style='float:right'>已售{{item.sale}}</text>
+          </view>
+        </view>
+    
+      </view>
+    </scroll-view>
+  </view>
+</view>

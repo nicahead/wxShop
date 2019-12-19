@@ -1,0 +1,4 @@
+<!--pages/about/about.wxml-->
+<view id='wrap'>
+	{{about}}
+</view>

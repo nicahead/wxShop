@@ -1,0 +1,138 @@
+page,.page,.page__bd{
+    height: 100%;
+}
+.page__bd{
+    padding-bottom: 0;
+}
+weui-navbar{
+  z-index: 9999;
+  background: '#fff';
+}
+.weui-tab__content{
+    text-align: center;
+    height: 900rpx;
+}
+.order-empty{
+  width:100%;height:70%;display: flex;justify-content: center;flex-direction: column; align-items: center;
+}
+
+.container {
+  width: 750rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.item {
+  margin-bottom: 40rpx;
+}
+
+.item .item-top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 750rpx;
+  height: 80rpx;
+  box-sizing: border-box;
+  padding: 0 10rpx;
+  border-top: 1rpx solid #f4f4f4;
+  border-bottom: 1rpx solid #f4f4f4;
+}
+
+.item .item-middle {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 130rpx;
+  width: 750rpx;
+}
+
+.item .item-middle .left {
+  height: 100rpx;
+}
+
+.item .item-middle .left image {
+  width: 100rpx;
+  height: 100rpx;
+  margin-left: 50rpx;
+}
+
+.item .item-middle .center-name {
+  width: 400rpx;
+  margin-left: 30rpx;
+}
+
+.item .item-middle .center-nums {
+  width: 100rpx;
+  margin-left: 20rpx;
+}
+
+.item .item-middle .right {
+  width: 100rpx;
+  margin-left: 50rpx;
+}
+
+.item .item-bottom {
+  line-height: 80rpx;
+  text-align: left;
+  box-sizing: border-box;
+  font-size: 26rpx;
+  margin-left: 7rpx;
+  border-top: 1rpx solid #f4f4f4;
+}
+.item .item-oop {
+  display: flex;
+  flex-direction: row-reverse;
+  height: 80rpx;
+  line-height: 80rpx;
+  width: 750rpx;
+  justify-content: space-between;
+}
+.btn{
+  display: flex;
+  flex-direction: row;
+  line-height: 80rpx;
+  padding-right: 10rpx;
+  justify-content: flex-end;
+  margin-top: 10rpx;
+}
+.comment1-description{
+    margin-top: 35rpx;
+}
+.comment1-description1{
+    font-family: PingFangSC-Regular;
+    font-size: 28rpx;
+    color: #333333;
+    margin-left: 60rpx;
+}
+.comment1-description1 textarea{
+    border: 1rpx solid #f4f4f4;
+    width: 450rpx;
+    height: 200rpx;
+}
+
+.star-pos {
+    position: absolute;
+    right: 0px;
+    margin-right: 170rpx;
+}
+.comment1-description .star-pos .hideStar{
+    z-index: 2;
+    background-image: url("https://www.tobenumone.com/public/star-off.png");
+    width: 83rpx;
+    height: 43rpx;
+    background-size: 43rpx 43rpx;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.starsM{
+    z-index: 1;
+    width: 83rpx;
+    height: 43rpx;
+    background-image: url("https://www.tobenumone.com/public/star-on.png");
+    background-size: 43rpx 43rpx;
+    background-position: center center;
+    background-repeat: no-repeat;
+}

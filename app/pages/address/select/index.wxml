@@ -1,0 +1,27 @@
+<view class="container">
+  <view class="address-list">
+   <radio-group>
+    <view class="a-address" wx:for-items="{{addressList}}" wx:key="{{index}}">
+      <view class="address-item" bindtap="selectTap" data-id="{{item.ID}}">
+        <view>
+          <radio data-id="{{item.ID}}" value="{{item.ID}}" checked="{{item.ID==defaultAddress}}" bindtap='defaultAddress' />
+        </view>
+        <view class="left-text">
+          <view class="name-left">
+            {{item.ID == defaultAddress ? '【默认】' : ''}}{{item.NAME}},{{item.MOBILE}}
+          </view>
+          <view class="address-box">
+            {{item.PROVINCE}}{{item.CITY}}{{item.AREA}}{{item.DETAIL}}
+          </view>
+        </view>
+      </view>
+    </view>
+    </radio-group>
+
+    <navigator bindtap='toAdd' open-type='redirect'>
+      <view class="add-address">
+        <view class="title">新增收货地址</view>
+      </view>
+    </navigator>
+  </view>
+</view>

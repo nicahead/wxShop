@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "退款详情",
+  "backgroundColor": "#000",
+  "usingComponents": {
+    "wux-steps": "../../../../../dist/steps/index",
+    "wux-step": "../../../../dist/step/index"
+  }
+}

@@ -1,0 +1,22 @@
+<wxs module="filter" src="../../../../utils/order.wxs"></wxs>
+<scroll-view class='container' scroll-y='true' bindscrolltolower="searchScrollLower">
+  <view class='item' wx:for="{{billList}}" wx:key="{{item.id}}">
+    <view class='item-middle'>
+      <view class='item-row'>
+        <view class="order-item">收款人:{{item.receiver}}</view>
+        <view class="order-item">{{filter.dateFormat(item.createtime)}}</view>
+        <view class="order-item">交易单号:{{item.transnum}}</view>
+      </view>
+      <view class='right-money'>
+        {{item.money}}元
+      </view>
+    </view>
+  </view>
+  <view class="weui-loadmore" hidden='{{!searchLoading}}'>
+    <view class="weui-loading"></view>
+    <view class="weui-loadmore__tips">正在加载</view>
+  </view>
+  <view class="weui-loadmore weui-loadmore_line" hidden="{{!searchLoadingComplete}}">
+    <view class="weui-loadmore__tips weui-loadmore__tips_in-line">没有更多数据</view>
+  </view>
+</scroll-view>

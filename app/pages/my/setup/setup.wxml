@@ -1,0 +1,44 @@
+<view class='container'>
+  <view class="middle">
+    <navigator class='middle-item' url="/pages/my/setup/aboutus/index">
+      <view class='left'>
+        <image src="/images/about-us.png"></image>
+      </view>
+      <view class='center'>关于我们</view>
+      <view class='right'>
+        <image src='/images/arrow-right.png'></image>
+      </view>
+    </navigator>
+
+    <navigator class='middle-item' url='/pages/my/setup/contactus/index'>
+      <view class='left'>
+        <image src="/images/contact-us.png"></image>
+      </view>
+      <view class='center'>联系我们</view>
+      <view class='right'>
+        <image src='/images/arrow-right.png'></image>
+      </view>
+    </navigator>
+    <!--
+    <navigator class='middle-item' url='/pages/my/setup/aboutus/index'>
+      <view class='left'>
+        <image src="/images/server.png"></image>
+      </view>
+      <view class='center'>平台客服</view>
+      <view class='right'>
+        <image src='/images/arrow-right.png'></image>
+      </view>
+    </navigator>
+    
+    <navigator class='middle-item' url='/pages/welcome/index'>
+      <view class='left'>
+        <image src="/images/exit.png"></image>
+      </view>
+      <view class='center'>退出登录</view>
+      <view class='right'>
+        <image src='/images/arrow-right.png'></image>
+      </view>
+    </navigator>
+   -->
+  </view>
+</view>

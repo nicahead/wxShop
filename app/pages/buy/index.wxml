@@ -1,0 +1,72 @@
+<wxs src="../../utils/order.wxs" module="filter" />
+
+<view class="page">
+  <view class="page__bd">
+		<form bindsubmit="settlement" class="takeOrder">
+			<view class="address-box">
+				<view class="address-hor" hidden="{{!addressStatus}}" bindtap="selectAddress">
+					<view>
+						<image class='mypos' src='/images/iconfont-shouhuodizhi.png'></image>
+					</view>
+					<view class="show-address">
+						<view class="def-address">
+							<view class="name-tel">收货人：{{addressData.receiver}}</view>
+							<view class="name-tel">{{addressData.tel}}</view>
+						</view>
+
+						<view class="addr-text">收货地址:{{addressData.province}}{{addressData.city}}{{addressData.area}}{{addressData.detail}}</view>
+					</view>
+					<view>
+						<image class='mypos' src='/images/arrow-right.png'></image>
+					</view>
+				</view>
+				<navigator bindtap='addAddress' open-type='redirect'>
+					<view class="add-address">
+						<view class="title" style='text-algin:center'>新增收货地址</view>
+					</view>
+				</navigator>
+			</view>
+			<!--订单详情 -->
+				<view class="goods" hover-class="weui-cell_active">
+					<!--左侧图片-->
+					<view>
+						<image src="{{filter.imgPath(item.pic)}}" class="good-img" />
+					</view>
+					<!--右侧说明部分-->
+					<view class="good-cont">
+						<!--文字说明-->
+						<view class="goods-navigator">
+							<text>{{item.itemName}}</text>
+						</view>
+						<view>
+							<text style='color: #ec5151;'>X{{item.num}}</text>
+						</view>
+					</view>
+					<view class="good-price">
+						<text class="price">￥{{item.price*item.num}}</text>
+					</view>
+				</view>
+
+			<view class="food-detail">
+				<text>商品总金额</text>
+				<view>
+					<text>￥</text>{{item.price*item.num}}
+				</view>
+			</view>
+			<view class="food-detail">
+				<text>配送费用</text>
+				<view>
+					<text>￥</text>{{item.packFee}}
+				</view>
+			</view>
+			
+			<view class="takeBill">
+				<view class="box-left">
+				 合计：
+					<text>￥ {{item.price*item.num+item.packFee}}</text>
+				</view>
+				<button class="box-right" formType="submit" disabled="{{payDisabled}}"> 微信支付 </button>
+			</view>
+		</form>
+  </view>
+</view>

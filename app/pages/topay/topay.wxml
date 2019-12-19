@@ -1,0 +1,15 @@
+<!--pages/order/topay.wxml-->
+<view class='containers'>
+<image style='width:500rpx;height:300rpx' src="../../images/wxpay.png" mode='aspectFit'></image>
+</view>
+<view class='view-input'>
+  收款方：八方汇学子小铺
+</view>
+<!-- <view class='view-input'>
+  金额：<text style='color:red'>¥ {{money}}</text>
+</view> -->
+<view class='view-input'>
+  支付方式：微信支付
+</view>
+
+<button class="weui-btn" type="primary" bindtap="pay" style='margin-left:20rpx;margin-right:20rpx;'>支  付</button>

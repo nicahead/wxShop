@@ -1,0 +1,72 @@
+.container{
+  width:750rpx;
+  font-size: 28rpx;
+  color: #000;
+}
+
+.middle {
+  display: flex;
+  flex-direction: column;
+}
+.middle .middle-item{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 750rpx;
+  height:100rpx;
+   position: relative; 
+  font-size: 28rpx;
+}
+.middle .middle-item:before{
+ content: " ";
+ height:1px;
+ width:700rpx;
+ border-top: 1rpx solid #f4f4f4;
+ position: absolute;
+ top:0rpx;
+ left:25rpx;
+}
+.middle .middle-item:last-child:after{
+ content: " ";
+ height:1px;
+ width:700rpx;
+ border-top: 1rpx solid #f4f4f4;
+ position: absolute;
+ bottom:0rpx;
+  left:25rpx;
+}
+.middle .middle-item .left{
+  width:100rpx;
+  height:30rpx;
+}
+.middle .middle-item .left image{
+  width:30rpx;
+  height:30rpx;
+  margin-left:70rpx;
+}
+
+.middle .middle-item .center{
+  width:550rpx;
+  margin-left:25rpx;
+  text-align: left;
+}
+.btnservice{
+  width:550rpx;
+  text-align: left;
+  background-color: #fff;
+  font-size: 28rpx;
+  color: #000;
+}
+.btnservice::after{
+  border: none;
+}
+.middle .middle-item .right{
+  margin-left:70rpx;
+  width:100rpx;
+ height:30rpx;
+}
+.middle .middle-item .right image{
+  width:30rpx;
+  height:30rpx;
+}

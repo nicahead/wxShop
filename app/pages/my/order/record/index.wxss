@@ -1,0 +1,24 @@
+page { background-color: #f0f0f0; color: #000;font-size: 13px;}
+.page__hd{
+  background-color: #fff;
+  margin-bottom: 20rpx;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 20rpx;
+  padding-top: 20rpx;
+}
+.page__title{
+  margin-left: 20rpx;
+}
+.page__bd{
+  border-top: 1px solid #e0e0e0;
+  background-color: #fff;
+  border-bottom: 1px solid #e0e0e0;
+}
+.sub-title{
+  font-size: 14px;
+  border-bottom: 1px solid #e0e0e0;
+  margin-left: 20rpx;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+  color: black;
+}
