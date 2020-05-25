@@ -7,9 +7,9 @@ spring:
       content-type: text/html
   datasource:
     druid:
-      url: jdbc:mysql://localhost:3306/shop?useUnicode=true&characterEncoding=utf-8
+      url: jdbc:mysql://localhost:3306/shop?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8
       username: root
-      password: 123456
+      password: root
       initial-size: 1
       min-idle: 1
       max-active: 20
@@ -34,21 +34,21 @@ logging:
   level:
      com.ytu.shop.mapper : debug
 
-http:
-  port: 80
+#http:
+#  port: 80
 
 server:
-  port: 8443
+  port: 8080
   servlet:
     session:
       timeout: 3600s
   tomcat:
     uri-encoding: UTF-8
     basedir: target/tomcat
-  ssl:
-    key-store: classpath:1655744_nichang.site.pfx
-    key-store-password: NLAH0poe
-    keyStoreType: PKCS12
+#  ssl:
+#    key-store: classpath:1655744_nichang.site.pfx
+#    key-store-password: NLAH0poe
+#    keyStoreType: PKCS12
 #配置外部访问文件（把上传的图片视频文件放到E盘下的fileUpload文件夹下）
 uploadPath: D:/upload/
 
